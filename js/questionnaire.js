@@ -78,8 +78,29 @@ function collectAnswers() {
 function saveAnswersAndConfigure() {
   if (configureStarted) return;
   configureStarted = true;
-  
-  SpotterStorage.saveAnswers(collectAnswers());
+
+  const answers = collectAnswers();
+  SpotterStorage.saveAnswers(answers);
+
+  // Soumission Formspree non-bloquante.
+  // L'animation de configure dure ~3s, ce qui laisse largement
+  // le temps à la requête de partir avant la redirection.
+  submitToFormspree({
+    submission_type: 'questionnaire_completed',
+    _subject: '[Spotter] Nouveau questionnaire complété',
+    email: answers.email,
+    tools: (answers.tools || []).join(', '),
+    role: answers.role,
+    cabinet_size: answers.size,
+    clients: answers.clients,
+    reports_frequency: answers.reports,
+    communication: answers.comm,
+    habits: answers.habits,
+    automation_experience: answers.auto,
+    estimated_hours_lost_per_week: answers.hours,
+    submitted_at: new Date().toISOString()
+  });
+
   startConfigureAnimation();
 }
 
