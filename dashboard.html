@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Spotter</title>
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="app">
+  <aside>
+    <div class="logo">⏱ Spotter</div>
+    <div class="logo-sub">Détection pertes de temps</div>
+    
+    <div class="nav-label" style="margin-top: 0;">Vue dashboard</div>
+    <ul class="view-list">
+      <li class="view-item active" data-view="pending">
+        <span class="pulse-dot"></span>
+        <span>Jour J · En attente</span>
+      </li>
+      <li class="view-item" data-view="loaded">
+        <span>📊</span>
+        <span>Aperçu Jour 10</span>
+      </li>
+    </ul>
+    
+    <div class="nav-label">Cabinets analysés</div>
+    <ul class="cabinet-list">
+      <li class="cabinet-item active" data-cabinet="1">
+        <span>📁</span>
+        <div class="cabinet-text">
+          <span>Cabinet Lefèvre</span>
+          <span class="cabinet-meta">5 collabs · Caen</span>
+        </div>
+      </li>
+      <li class="cabinet-item" data-cabinet="2">
+        <span>📁</span>
+        <div class="cabinet-text">
+          <span>Comptaboost</span>
+          <span class="cabinet-meta">12 collabs · Lyon</span>
+        </div>
+      </li>
+      <li class="cabinet-item" data-cabinet="3">
+        <span>📁</span>
+        <div class="cabinet-text">
+          <span>Cabinet Rousseau</span>
+          <span class="cabinet-meta">3 collabs · Bordeaux</span>
+        </div>
+      </li>
+    </ul>
+  </aside>
+  
+  <main>
+    <div id="previewBannerContainer"></div>
+    <div id="dashboard"></div>
+  </main>
+</div>
+
+<!-- ACTIVATE MODAL -->
+<div class="overlay" id="activateModal">
+  <div class="modal-card activate-modal" id="activateModalContent"></div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/data.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

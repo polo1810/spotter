@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Téléchargement · Spotter</title>
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/download.css">
+</head>
+<body>
+
+<div class="download-page">
+  <div class="download-card">
+    <div class="download-header">
+      <div class="download-icon-big">✨</div>
+      <div class="download-title">Votre app est prête !</div>
+      <div class="download-sub">
+        On a personnalisé Spotter en fonction de vos réponses.<br>
+        Plus qu'à l'installer pour démarrer l'analyse.
+      </div>
+    </div>
+    
+    <div class="download-body">
+      <div class="download-recap">
+        <div class="download-recap-title">Personnalisé pour vous</div>
+        <div class="download-recap-line"><span class="check">✓</span> Connecteurs Pennylane + Outlook + Excel pré-configurés</div>
+        <div class="download-recap-line"><span class="check">✓</span> Détection ciblée sur vos zones de friction</div>
+        <div class="download-recap-line"><span class="check">✓</span> Calibrage des seuils selon votre estimation</div>
+      </div>
+      
+      <div class="download-platforms">
+        <button class="platform-btn" data-platform="macOS">
+          <span class="platform-icon">🍎</span> macOS
+        </button>
+        <button class="platform-btn" data-platform="Windows">
+          <span class="platform-icon">🪟</span> Windows
+        </button>
+      </div>
+      
+      <div class="download-note">
+        L'installation prend ~30 secondes.<br>
+        Aucune saisie requise après le téléchargement.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTALL MODAL -->
+<div class="overlay" id="installModal">
+  <div class="install-modal">
+    <div class="install-icon" id="installIcon">📦</div>
+    <div class="install-title" id="installTitle">Installation en cours...</div>
+    <div class="install-sub">Spotter pour <span id="installPlatform">macOS</span></div>
+    <div class="install-progress"><div class="install-progress-fill" id="installProgress"></div></div>
+    <div class="install-percent" id="installPercent">0%</div>
+    <div class="install-status" id="installStatus">Téléchargement...</div>
+    <div class="install-preview-msg" id="installPreviewMsg">
+      💡 <strong>Pendant que ça s'installe</strong>, voici un aperçu de ce à quoi votre dashboard va ressembler une fois lancé.
+    </div>
+  </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/download.js"></script>
+
+</body>
+</html>

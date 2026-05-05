@@ -1,0 +1,113 @@
+/* ===========================================
+   LANDING PAGE
+   =========================================== */
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: radial-gradient(ellipse at top, #fff 0%, #f7f6f3 60%);
+}
+
+.landing-hero {
+  max-width: 720px;
+  text-align: center;
+}
+
+.landing-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  padding: 8px 18px;
+  background: white;
+  border: 1px solid #e5e3dd;
+  border-radius: 100px;
+  margin-bottom: 36px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.landing-logo-sub {
+  font-size: 11px;
+  color: #6b6b6b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-left: 8px;
+  border-left: 1px solid #e5e3dd;
+}
+
+.landing h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.landing h1 .highlight {
+  background: linear-gradient(135deg, #2d7d4f 0%, #3ea569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.landing-sub {
+  font-size: 18px;
+  color: #4a4a4a;
+  line-height: 1.55;
+  margin-bottom: 36px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-cta {
+  background: linear-gradient(135deg, #2d7d4f 0%, #3ea569 100%);
+  color: white;
+  border: none;
+  padding: 18px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(45,125,79,0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.landing-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(45,125,79,0.4);
+}
+
+.landing-reassure {
+  font-size: 13px;
+  color: #6b6b6b;
+  margin-top: 20px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.landing-reassure span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-reassure .check {
+  color: #2d7d4f;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .landing h1 { font-size: 32px; }
+  .landing-sub { font-size: 16px; }
+}
