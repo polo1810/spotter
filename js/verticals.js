@@ -11,6 +11,10 @@ const VERTICALS = {
     chip: 'Pour cabinets d\'expertise comptable',
     title: 'Quelques questions pour personnaliser votre app',
     subtitle: 'Vos réponses nous permettent de configurer Spotter spécifiquement pour vous.',
+    // --- Méta pour la carte de la landing ---
+    landingIcon: '📊',
+    landingTitle: 'Expertise comptable',
+    landingDesc: 'Pennylane, Cegid, OCR fournisseurs, reportings clients, relances justificatifs...',
     questions: [
       {
         id: 'tools', type: 'multi',
@@ -120,6 +124,10 @@ const VERTICALS = {
     chip: 'Pour cabinets de recrutement',
     title: 'Quelques questions pour personnaliser votre app',
     subtitle: 'Vos réponses nous permettent de configurer Spotter spécifiquement pour votre activité.',
+    // --- Méta pour la carte de la landing ---
+    landingIcon: '🎯',
+    landingTitle: 'Recrutement',
+    landingDesc: 'ATS (Lever, Workable...), LinkedIn Recruiter, sourcing, viviers candidats, comptes-rendus mission...',
     questions: [
       {
         id: 'tools', type: 'multi',

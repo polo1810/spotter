@@ -4,8 +4,15 @@
 
 // --- Détection de la verticale depuis l'URL (?v=recrutement) ---
 const params = new URLSearchParams(window.location.search);
-const verticalKey = params.get('v') || 'comptable';
-const currentVertical = VERTICALS[verticalKey] || VERTICALS.comptable;
+const verticalKey = params.get('v');
+
+// Si aucune verticale valide n'est fournie, on renvoie vers le sélecteur métier
+if (!verticalKey || !VERTICALS[verticalKey]) {
+  window.location.href = 'index.html#metiers';
+  throw new Error('Vertical manquante — redirection vers la landing');
+}
+
+const currentVertical = VERTICALS[verticalKey];
 const TOTAL_STEPS = currentVertical.questions.length;
 
 let qStep = 1;

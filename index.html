@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotter — Détecte où ton cabinet perd vraiment du temps</title>
+  <title>Spotter — Détecte où ton équipe perd vraiment du temps</title>
   <meta name="description" content="Spotter analyse ton quotidien pendant 10 jours et te propose des automatisations déjà conçues pour toi, activables en un clic.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,7 +128,7 @@
     .hero-sub {
       font-size: 18px;
       color: var(--text-2);
-      max-width: 540px;
+      max-width: 580px;
       margin: 0 auto 32px;
       line-height: 1.6;
       animation: fadeIn 0.5s ease-out 0.25s both;
@@ -355,6 +355,115 @@
     }
 
     .m-activate:hover { background: var(--blue-dark); }
+
+    /* ====== SECTION : MÉTIERS ====== */
+    .metiers {
+      padding: 100px 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .metiers-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .metiers-header h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .metiers-sub {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .metiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .metier-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .metier-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+    }
+
+    .metier-card-icon {
+      font-size: 26px;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-light);
+      border-radius: 12px;
+    }
+
+    .metier-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+    }
+
+    .metier-card-desc {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .metier-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue);
+      margin-top: 4px;
+      transition: gap 0.2s;
+    }
+
+    .metier-card:hover .metier-card-cta { gap: 10px; }
+
+    .metiers-other {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 14px;
+      color: var(--text-3);
+    }
+
+    .metiers-other a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .metiers-other a:hover { text-decoration: underline; }
 
     /* ====== SECTION : COMMENT ÇA MARCHE ====== */
     .how {
@@ -633,6 +742,11 @@
       .m-auto { flex-direction: column; align-items: stretch; gap: 12px; }
       .m-auto-right { flex-direction: row; justify-content: space-between; align-items: center; }
 
+      .metiers { padding: 64px 0; }
+      .metiers-header { margin-bottom: 32px; }
+      .metiers-grid { grid-template-columns: 1fr; gap: 12px; }
+      .metier-card { padding: 22px; }
+
       .how { padding: 64px 0; }
       .how-header { margin-bottom: 40px; }
       .steps { grid-template-columns: 1fr; gap: 32px; }
@@ -680,11 +794,11 @@
   <div class="container">
     <div class="hero-chip">
       <span class="hero-chip-dot"></span>
-      Pour cabinets d'expertise comptable
+      Pour les métiers à fortes tâches répétitives
     </div>
 
     <h1>
-      Détecte où ton cabinet<br>
+      Détecte où ton équipe<br>
       perd <span>vraiment</span> du temps.
     </h1>
 
@@ -695,8 +809,8 @@
     </p>
 
     <div class="hero-cta-row">
-      <a href="questionnaire.html" class="btn-primary">
-        Voir où je perds du temps
+      <a href="#metiers" class="btn-primary">
+        Choisir mon métier
         <span class="btn-arrow">→</span>
       </a>
     </div>
@@ -739,10 +853,9 @@
 
         <div class="m-auto">
           <div class="m-auto-left">
-            <div class="m-auto-name">Auto-correction OCR fournisseurs récurrents</div>
-            <div class="m-auto-desc">12 fournisseurs identifiés, mapping pré-paramétré. Noms et dates corrigés automatiquement.</div>
+            <div class="m-auto-name">Auto-correction des saisies répétitives</div>
+            <div class="m-auto-desc">Les patterns récurrents identifiés chez toi sont corrigés automatiquement, dans l'outil que tu utilises déjà.</div>
             <div class="m-auto-tags">
-              <span class="m-tag">🔌 Pennylane</span>
               <span class="m-tag-effort">0 ligne de code · 2 min</span>
             </div>
           </div>
@@ -754,10 +867,9 @@
 
         <div class="m-auto">
           <div class="m-auto-left">
-            <div class="m-auto-name">Templates de réponse mail intelligents</div>
-            <div class="m-auto-desc">5 réponses-types dans 80% de tes mails. Raccourcis Outlook pré-configurés.</div>
+            <div class="m-auto-name">Templates de communication intelligents</div>
+            <div class="m-auto-desc">Les réponses qui reviennent dans 80% de tes échanges sont transformées en raccourcis prêts à l'emploi.</div>
             <div class="m-auto-tags">
-              <span class="m-tag">🔌 Outlook</span>
               <span class="m-tag-effort">0 ligne de code · 1 min</span>
             </div>
           </div>
@@ -769,6 +881,29 @@
 
       </div>
     </div>
+  </div>
+</section>
+
+<!-- MÉTIERS -->
+<section class="metiers" id="metiers">
+  <div class="container">
+    <div class="metiers-header">
+      <div class="section-label">Choisis ton métier</div>
+      <h2>Pour qui est Spotter ?</h2>
+      <p class="metiers-sub">
+        Chaque métier a ses outils, ses tâches, ses pertes de temps spécifiques.
+        On adapte l'analyse au tien.
+      </p>
+    </div>
+
+    <!-- Les cartes métiers sont injectées par js/landing.js depuis verticals.js -->
+    <div class="metiers-grid" id="metiersGrid"></div>
+
+    <p class="metiers-other">
+      Ton métier n'est pas dans la liste ?
+      <a href="mailto:contact@spotter.app?subject=Mon métier n'est pas dans la liste">Dis-le-nous</a>,
+      on l'ajoute.
+    </p>
   </div>
 </section>
 
@@ -785,7 +920,7 @@
         <div class="step-num">1</div>
         <h3>Tu configures en 30 secondes</h3>
         <p>
-          Dix questions rapides pour qu'on configure Spotter pour ton cabinet.
+          Dix questions rapides pour qu'on configure Spotter pour ton métier.
           Ensuite, tu le télécharges sur macOS ou Windows.
         </p>
       </div>
@@ -823,8 +958,8 @@
         </div>
         <div class="creator-text">
           <blockquote>
-            « Je vois plein de cabinets se précipiter sur l'IA sans savoir
-            où ils perdent vraiment du temps. Avec Spotter, j'inverse la logique :
+            « Je vois plein d'équipes se précipiter sur l'IA sans savoir
+            où elles perdent vraiment du temps. Avec Spotter, j'inverse la logique :
             <strong>l'outil détecte tes vraies pertes de temps, et les automatisations
             sont déjà conçues pour toi</strong>, personnalisées en fonction
             de ce qui a été repéré chez toi. T'as juste à cliquer sur Activer. »
@@ -861,10 +996,10 @@
 <!-- CTA FINAL -->
 <section class="cta-final">
   <div class="container">
-    <h2>Prêt à voir où ton cabinet<br>perd <span>vraiment</span> du temps ?</h2>
-    <p class="cta-final-sub">Dix questions rapides, et c'est parti.</p>
-    <a href="questionnaire.html" class="btn-primary">
-      Démarrer maintenant
+    <h2>Prêt à voir où ton équipe<br>perd <span>vraiment</span> du temps ?</h2>
+    <p class="cta-final-sub">Choisis ton métier, dix questions rapides, et c'est parti.</p>
+    <a href="#metiers" class="btn-primary">
+      Choisir mon métier
       <span class="btn-arrow">→</span>
     </a>
     <p class="cta-final-meta">Bêta gratuite · Aucune carte bancaire · 30 secondes</p>
@@ -885,6 +1020,9 @@
     <span>Bêta 2025 · Conçu en France</span>
   </div>
 </footer>
+
+<script src="js/verticals.js"></script>
+<script src="js/landing.js"></script>
 
 </body>
 </html>
