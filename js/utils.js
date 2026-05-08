@@ -67,6 +67,24 @@ const SpotterStorage = {
 function isValidEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
 }
+
+/**
+ * Récupère l'IP publique du visiteur via l'API ipify.
+ * Résout avec null en cas d'échec (timeout 3s).
+ * @returns {Promise<string|null>}
+ */
+async function getClientIP() {
+  try {
+    const res = await Promise.race([
+      fetch('https://api.ipify.org?format=json'),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+    ]);
+    const data = await res.json();
+    return data.ip || null;
+  } catch {
+    return null;
+  }
+}
  
 /**
  * Navigation entre pages

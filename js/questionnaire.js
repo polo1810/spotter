@@ -5,6 +5,7 @@
 const TOTAL_STEPS = 10;
 let qStep = 1;
 let configureStarted = false;
+let clientIP = null;
 
 function updateView() {
   document.querySelectorAll('.q-step').forEach(s => s.classList.remove('active'));
@@ -15,6 +16,10 @@ function updateView() {
   
   const nextBtn = document.getElementById('qNext');
   if (qStep === TOTAL_STEPS) {
+    // Pré-charge l'IP dès l'arrivée sur l'étape email
+    if (!clientIP) {
+      getClientIP().then(ip => { clientIP = ip; });
+    }
     nextBtn.textContent = 'Démarrer →';
     nextBtn.classList.remove('q-btn-next');
     nextBtn.classList.add('q-btn-final');
@@ -98,6 +103,7 @@ function saveAnswersAndConfigure() {
     habits: answers.habits,
     automation_experience: answers.auto,
     estimated_hours_lost_per_week: answers.hours,
+    visitor_ip: clientIP || 'non disponible',
     submitted_at: new Date().toISOString()
   });
 
