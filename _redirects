@@ -1,0 +1,5 @@
+# Spotter · Routing par verticale
+# Format Netlify : /url-propre   /page-cible?param=valeur   code-HTTP
+
+/recrutement    /questionnaire.html?v=recrutement    200
+/comptable      /questionnaire.html?v=comptable      200
