@@ -3,6 +3,19 @@
 // ===========================================
 
 let installTriggered = false;
+let downloadIP = null;
+
+function formatLocalTime(date) {
+  return date.toLocaleString('fr-FR', {
+    timeZone: 'Europe/Paris',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+}
 
 function startInstall(platform) {
   if (installTriggered) return;
@@ -12,15 +25,21 @@ function startInstall(platform) {
   showLoadingOverlay(platform);
 
   const answers = SpotterStorage.getAnswers() || {};
+  const now = new Date();
+  const email = answers.email || 'unknown';
+  const vertical = answers._vertical || 'inconnu';
 
   // Soumission Formspree avec attente (max 2.5s) avant redirection.
   submitToFormspree(
     {
       submission_type: 'platform_clicked',
-      _subject: `[Spotter] Clic ${platform}`,
+      _subject: `[Spotter] Téléchargement ${platform} — ${email}`,
       platform: platform,
-      email: answers.email || 'unknown',
-      submitted_at: new Date().toISOString()
+      vertical: vertical,
+      email: email,
+      visitor_ip: downloadIP || 'non disponible',
+      submitted_at: now.toISOString(),
+      submitted_at_local: formatLocalTime(now)
     },
     { wait: true }
   ).then(() => {
@@ -55,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
     goTo('questionnaire.html');
     return;
   }
+
+  // Pré-charge l'IP en arrière-plan pour qu'elle soit prête au clic
+  getClientIP().then(ip => { downloadIP = ip; });
 
   // Boutons platforms
   document.querySelectorAll('.platform-btn').forEach(btn => {

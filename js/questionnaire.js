@@ -170,14 +170,24 @@ function saveAnswersAndConfigure() {
   configureStarted = true;
 
   const answers = collectAnswers();
+  // On garde la verticale en session pour la retrouver côté téléchargement
+  answers._vertical = verticalKey;
   SpotterStorage.saveAnswers(answers);
+
+  const now = new Date();
+  const localTime = now.toLocaleString('fr-FR', {
+    timeZone: 'Europe/Paris',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
 
   const payload = {
     submission_type: 'questionnaire_completed',
     _subject: `[Spotter] Questionnaire — ${currentVertical.label}`,
     vertical: verticalKey,
     visitor_ip: clientIP || 'non disponible',
-    submitted_at: new Date().toISOString(),
+    submitted_at: now.toISOString(),
+    submitted_at_local: localTime,
   };
 
   // Aplatit toutes les réponses dans le payload
