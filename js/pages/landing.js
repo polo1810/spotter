@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Landing — interactivité (grille métiers + recherche)
+// SPOTTER · Landing — interactivité (grille métiers + recherche + modal)
 // ===========================================
 // Le contenu textuel de la page est déjà dans le HTML servi
 // (concaténé par tools/build.js depuis les partials).
@@ -7,54 +7,56 @@
 //   - peupler la grille des métiers à partir de VERTICALS
 //   - filtrer la grille selon la recherche
 //   - brancher le raccourci ⌘K / Ctrl+K
+//   - au clic sur une carte, ouvrir un modal qui détaille le métier
+//     (gain estimé + automatisations) AVANT de lancer le questionnaire
 
 const METIERS_META = {
   comptable: {
     tools: 'Pennylane · Cegid · Outlook',
     peers: '1 200+ équipes',
-    timeSaved: '+5h30 / sem',
+    timeSaved: '+5h30',
     autos: [
-      'Auto-correction des saisies récurrentes',
-      'Templates de mail clients intelligents',
-      'Export Pennylane → reporting en 1 clic',
+      'Auto-correction des saisies récurrentes dans Sage / Pennylane',
+      'Templates de mail clients intelligents (réponses-types récurrentes)',
+      'Export Pennylane → reporting client en 1 clic',
     ],
   },
   recrutement: {
     tools: 'LinkedIn · Workable · Lever',
     peers: '720+ équipes',
-    timeSaved: '+6h15 / sem',
+    timeSaved: '+7h00',
     autos: [
       'Auto-formatage CV au template cabinet',
-      'Templates LinkedIn personnalisés',
-      'Sync ATS automatique depuis LinkedIn',
+      'Templates LinkedIn personnalisés (prise de contact, relance)',
+      'Sync ATS automatique depuis LinkedIn Recruiter',
     ],
   },
   avocat: {
     tools: 'Doctrine · Word · RPVA',
     peers: '480+ équipes',
-    timeSaved: '+5h30 / sem',
+    timeSaved: '+4h15',
     autos: [
-      'Bibliothèque d\'actes-types pré-personnalisés',
-      'Suivi facturation horaire automatisé',
-      'Templates de réponses mail clients',
+      'Bibliothèque d\'actes-types pré-personnalisés (mises en demeure, contrats)',
+      'Suivi facturation horaire automatisé par dossier',
+      'Templates de réponses mail clients récurrents',
     ],
   },
   immobilier: {
     tools: 'Hektor · SeLoger · WhatsApp',
     peers: '360+ équipes',
-    timeSaved: '+4h45 / sem',
+    timeSaved: '+3h45',
     autos: [
-      'Sync multi-portails automatique',
-      'Relance post-visite automatisée',
+      'Sync multi-portails automatique (Hektor → SeLoger, Leboncoin…)',
+      'Relance post-visite automatisée (mail/SMS personnalisé)',
       'Reporting propriétaires en 1 clic',
     ],
   },
   architecte: {
     tools: 'AutoCAD · Revit · ArchiCAD',
     peers: '210+ équipes',
-    timeSaved: '+5h30 / sem',
+    timeSaved: '+6h15',
     autos: [
-      'Comptes-rendus de chantier auto-générés',
+      'Comptes-rendus de chantier auto-générés (saisie tablette → CR formaté)',
       'Relances pièces automatiques par dossier',
       'Templates dossier permis pré-remplis',
     ],
@@ -62,30 +64,30 @@ const METIERS_META = {
   conseil: {
     tools: 'PowerPoint · Notion · HubSpot',
     peers: '540+ équipes',
-    timeSaved: '+5h30 / sem',
+    timeSaved: '+4h30',
     autos: [
-      'Auto-mise en page des slides au template',
-      'CR de réunion automatisés',
+      'Auto-mise en page des slides au template cabinet',
+      'CR de réunion automatisés (transcription + structure)',
       'Bibliothèque de propales modulaires',
     ],
   },
   marketing: {
     tools: 'HubSpot · Meta Ads · LinkedIn',
     peers: '480+ équipes',
-    timeSaved: '+5h30 / sem',
+    timeSaved: '+8h00',
     autos: [
-      'Reportings multi-plateformes auto-générés',
-      'Cross-posting réseaux sociaux',
+      'Reportings multi-plateformes auto-générés (Google Ads + Meta + GA4)',
+      'Cross-posting réseaux sociaux automatisé',
       'Templates briefs créatifs intelligents',
     ],
   },
   formation: {
     tools: 'Digiforma · Moodle · Outlook',
     peers: '180+ équipes',
-    timeSaved: '+5h15 / sem',
+    timeSaved: '+5h45',
     autos: [
-      'Conventions + attestations auto-générées',
-      'Séquences de relance apprenants',
+      'Génération auto conventions + attestations',
+      'Séquences de relance apprenants entre les modules',
       'Bibliothèque de supports modulaires',
     ],
   },
@@ -96,6 +98,81 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
+
+// ===========================================
+// Modal métier (preview avant questionnaire)
+// ===========================================
+
+function openMetierModal(item) {
+  const modal = document.getElementById('metierModal');
+  const content = document.getElementById('metierModalContent');
+  if (!modal || !content) return;
+
+  content.innerHTML = `
+    <button class="metier-modal-close" aria-label="Fermer">×</button>
+
+    <div class="metier-modal-eyebrow">Métier sélectionné</div>
+    <h3 class="metier-modal-title">${escapeHtml(item.label)}</h3>
+    <div class="metier-modal-tools">${escapeHtml(item.tools)}</div>
+
+    <div class="metier-modal-gain">
+      <div class="metier-modal-gain-row">
+        <span class="metier-modal-gain-value">${escapeHtml(item.timeSaved)}</span>
+        <span class="metier-modal-gain-unit">/ semaine</span>
+      </div>
+      <div class="metier-modal-gain-label">de gain estimé en moyenne, selon les retours bêta</div>
+    </div>
+
+    <div class="metier-modal-section">
+      <div class="metier-modal-section-title">Ce que Spotter te proposera</div>
+      <ul class="metier-modal-autos">
+        ${item.autos.map(a => `<li>${escapeHtml(a)}</li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="metier-modal-foot">
+      <div class="metier-modal-note">10 questions rapides · 30 secondes · aucune carte bancaire</div>
+      <div class="metier-modal-actions">
+        <button class="btn btn-ghost" data-action="close">Annuler</button>
+        <a href="/pages/questionnaire.html?v=${encodeURIComponent(item.key)}"
+           class="btn btn-primary btn-lg metier-modal-cta">
+          Démarrer mon questionnaire →
+        </a>
+      </div>
+    </div>
+  `;
+
+  // Listeners du modal (close)
+  modal.querySelector('.metier-modal-close').addEventListener('click', closeMetierModal);
+  modal.querySelector('[data-action="close"]').addEventListener('click', closeMetierModal);
+
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMetierModal() {
+  const modal = document.getElementById('metierModal');
+  if (!modal) return;
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// Ferme au clic à l'extérieur de la carte
+document.addEventListener('click', e => {
+  const modal = document.getElementById('metierModal');
+  if (modal && modal.classList.contains('show') && e.target === modal) {
+    closeMetierModal();
+  }
+});
+
+// Ferme avec Échap
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMetierModal();
+});
+
+// ===========================================
+// Grille métiers + recherche
+// ===========================================
 
 (function () {
   const grid        = document.getElementById('metiersGrid');
@@ -130,27 +207,24 @@ function escapeHtml(s) {
     if (noResults) noResults.style.display = 'none';
 
     grid.innerHTML = filtered.map(item => `
-      <a href="/pages/questionnaire.html?v=${item.key}" class="metier">
-        <div class="metier-head">
-          <div class="metier-name">${escapeHtml(item.label)}</div>
-          <div class="metier-tools">${escapeHtml(item.tools)}</div>
-        </div>
-
-        <div class="metier-gain">
-          <span class="metier-gain-value">${escapeHtml(item.timeSaved)}</span>
-          <span class="metier-gain-label">de gain moyen estimé</span>
-        </div>
-
-        <ul class="metier-autos">
-          ${item.autos.map(a => `<li>${escapeHtml(a)}</li>`).join('')}
-        </ul>
-
-        <div class="metier-foot">
-          <span class="metier-peers">${escapeHtml(item.peers)}</span>
+      <button class="metier" type="button" data-key="${escapeHtml(item.key)}">
+        <div class="metier-name">${escapeHtml(item.label)}</div>
+        <div class="metier-tools">${escapeHtml(item.tools)}</div>
+        <div class="metier-meta">
+          <span>${escapeHtml(item.peers)}</span>
           <span class="metier-cta">Démarrer →</span>
         </div>
-      </a>
+      </button>
     `).join('');
+
+    // Branche le clic sur chaque carte → ouvre le modal
+    grid.querySelectorAll('.metier').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.key;
+        const item = items.find(i => i.key === key);
+        if (item) openMetierModal(item);
+      });
+    });
   }
 
   function filter(query) {
