@@ -487,7 +487,7 @@
 
 .metiers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
   gap: 0;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -496,7 +496,7 @@
 }
 
 .metier {
-  padding: 22px;
+  padding: 28px 30px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   cursor: pointer;
@@ -504,20 +504,26 @@
   transition: background .15s;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 18px;
   position: relative;
   text-align: left;
   border-top: none;
   border-left: none;
   text-decoration: none;
   color: inherit;
-  min-height: 140px;
+  min-height: 260px;
 }
 
 .metier:hover { background: var(--bg-sunk); }
 
+.metier-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .metier-name {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -525,34 +531,88 @@
 
 .metier-tools {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--muted);
   letter-spacing: -0.01em;
   line-height: 1.4;
 }
 
-.metier-meta {
-  margin-top: auto;
+.metier-gain {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--accent-soft);
+  border-radius: 8px;
+}
+
+.metier-gain-value {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-ink);
+  letter-spacing: -0.02em;
+  font-feature-settings: "tnum";
+}
+
+.metier-gain-label {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--faint);
+  color: var(--accent-ink);
+  opacity: 0.75;
+}
+
+.metier-autos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  flex: 1;
+}
+
+.metier-autos li {
+  font-size: 13px;
+  color: var(--ink-2);
+  padding-left: 22px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.metier-autos li::before {
+  content: "✓";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 600;
+  width: 14px;
+  text-align: center;
+}
+
+.metier-foot {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.metier-arrow {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+.metier-peers {
   color: var(--faint);
-  font-size: 14px;
-  transition: transform .15s, color .15s;
 }
 
-.metier:hover .metier-arrow {
-  transform: translateX(2px);
-  color: var(--accent);
+.metier-cta {
+  color: var(--accent-ink);
+  font-weight: 600;
+  transition: transform .15s;
+}
+
+.metier:hover .metier-cta {
+  transform: translateX(3px);
 }
 
 .metiers-foot {
@@ -1222,12 +1282,15 @@
   .metiers-search { max-width: none; padding: 4px 4px 4px 14px; }
   .metiers-search input { height: 42px; font-size: 14px; }
   .metiers-search .kbd { display: none; }
-  .metiers-grid { grid-template-columns: 1fr 1fr; }
-  .metier { padding: 16px; min-height: 110px; }
-  .metier-name { font-size: 14px; }
-  .metier-tools { font-size: 10.5px; }
-  .metier-meta { font-size: 10.5px; }
-  .metier-arrow { top: 14px; right: 14px; font-size: 12px; }
+  .metiers-grid { grid-template-columns: 1fr; }
+  .metier { padding: 20px 22px; min-height: 0; gap: 14px; }
+  .metier-name { font-size: 16px; }
+  .metier-tools { font-size: 11px; }
+  .metier-gain { padding: 10px 12px; gap: 8px; }
+  .metier-gain-value { font-size: 16px; }
+  .metier-gain-label { font-size: 10.5px; }
+  .metier-autos li { font-size: 12.5px; padding-left: 20px; }
+  .metier-foot { font-size: 11.5px; padding-top: 14px; }
 
   .step { padding: 24px 22px; min-height: 0; }
   .step-title { font-size: 17px; }
