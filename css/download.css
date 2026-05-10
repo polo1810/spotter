@@ -195,6 +195,67 @@
 .install-preview-msg.show { display: block; }
 .install-preview-msg strong { color: #1a1a1a; }
 
+/* === RASSURANCE SMARTSCREEN WINDOWS === */
+.windows-reassure {
+  background: #fff8e6;
+  border: 1px solid #f5d97c;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 18px;
+  text-align: left;
+  animation: slideDown 0.4s ease-out;
+}
+
+.windows-reassure-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7a4f0a;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.windows-reassure-icon { font-size: 16px; }
+
+.windows-reassure-text {
+  font-size: 12px;
+  color: #5a4520;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.windows-reassure-text strong { color: #3d2f10; }
+
+.windows-reassure-steps {
+  margin: 0 0 10px 18px;
+  padding: 0;
+  font-size: 12px;
+  color: #5a4520;
+  line-height: 1.7;
+}
+
+.windows-reassure-steps li { margin-bottom: 2px; }
+.windows-reassure-steps strong { color: #1a1a1a; background: #fce5a3; padding: 1px 5px; border-radius: 3px; }
+.windows-reassure-steps em { font-style: italic; color: #7a4f0a; }
+.windows-reassure-steps code {
+  background: #f7f6f3;
+  border: 1px solid #e0ddd5;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  color: #1a1a1a;
+}
+
+.windows-reassure-footer {
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+  border-top: 1px dashed #f0d57e;
+  padding-top: 8px;
+}
+
 @media (max-width: 800px) {
   .download-platforms { grid-template-columns: 1fr; }
 }

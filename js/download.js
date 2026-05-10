@@ -146,6 +146,10 @@ function showWindowsDownload() {
   document.getElementById('installProgress').style.width = '0%';
   document.getElementById('installPercent').textContent  = '';
 
+  // Affiche le bloc "rassurance SmartScreen"
+  const reassureEl = document.getElementById('windowsReassure');
+  if (reassureEl) reassureEl.style.display = 'block';
+
   // Petite anim visuelle pendant que le download démarre
   let progress = 0;
   const interval = setInterval(() => {
@@ -191,6 +195,8 @@ function closeInstallModal() {
   // Restaure les éléments cachés pour macOS au cas où l'utilisateur recliquerait
   document.getElementById('installProgress').parentElement.style.display = '';
   document.getElementById('installPercent').style.display = '';
+  const reassureEl = document.getElementById('windowsReassure');
+  if (reassureEl) reassureEl.style.display = 'none';
 }
 
 // ===========================================

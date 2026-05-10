@@ -89,8 +89,25 @@
     <div class="install-progress"><div class="install-progress-fill" id="installProgress"></div></div>
     <div class="install-percent" id="installPercent">0%</div>
     <div class="install-status" id="installStatus">Téléchargement...</div>
-    <div class="install-preview-msg" id="installPreviewMsg">
-      💡 <strong>Pendant que ça s'installe</strong>, voici un aperçu de ce à quoi votre dashboard va ressembler une fois lancé.
+
+    <!-- Bloc rassurant SmartScreen Windows -->
+    <div id="windowsReassure" class="windows-reassure" style="display:none;">
+      <div class="windows-reassure-title">
+        <span class="windows-reassure-icon">🛡️</span>
+        Windows va probablement afficher un avertissement
+      </div>
+      <div class="windows-reassure-text">
+        C'est <strong>normal et inoffensif</strong> : Spotter est encore tout récent,
+        Windows ne le reconnaît pas encore. Voici comment continuer en 2 clics :
+      </div>
+      <ol class="windows-reassure-steps">
+        <li>Ouvre le fichier téléchargé <code>productly_setup.exe</code></li>
+        <li>Si <em>« Windows a protégé votre ordinateur »</em> apparaît, clique sur <strong>« Informations complémentaires »</strong></li>
+        <li>Puis sur <strong>« Exécuter quand même »</strong></li>
+      </ol>
+      <div class="windows-reassure-footer">
+        Cet avertissement disparaîtra automatiquement au fur et à mesure que d'autres utilisateurs installeront l'app.
+      </div>
     </div>
   </div>
 </div>
