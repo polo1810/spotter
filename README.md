@@ -13,7 +13,9 @@ questionnaire.html?v=<vertical>   → INSERT clients (Supabase)
     ↓ (auto)
 download.html
     ├─ Étape 1 : crée ton mot de passe → Supabase Auth signUp + lien user_id ↔ client
-    └─ Étape 2 : choix plateforme → maintenance.html
+    └─ Étape 2 : choix plateforme
+       ├─ Windows : téléchargement direct du .exe
+       └─ macOS : message "pas encore disponible"
     ↓
 login.html (retour client : email + mot de passe)
     ↓
@@ -88,7 +90,6 @@ spotter/
 ├── login.html              # Connexion client existant
 ├── dashboard.html          # Dashboard client (vraies données)
 ├── admin.html              # Espace admin (CRUD répétitions)
-├── maintenance.html        # Page de maintenance (post-download)
 ├── supabase-schema.sql     # Schéma SQL à exécuter dans Supabase
 ├── css/
 │   ├── global.css          # Styles partagés
@@ -97,8 +98,7 @@ spotter/
 │   ├── download.css        # Styles download (+ étape password)
 │   ├── login.css           # Styles login
 │   ├── dashboard.css       # Styles dashboard
-│   ├── admin.css           # Styles admin
-│   └── maintenance.css     # Styles maintenance
+│   └── admin.css           # Styles admin
 ├── js/
 │   ├── supabase-config.js  # ⚠️ À configurer (URL + anon key + admin)
 │   ├── supabase-client.js  # Wrapper Supabase + helpers (auth, queries)

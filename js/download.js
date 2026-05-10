@@ -101,51 +101,96 @@ async function submitPassword() {
 // ÉTAPE 2 — téléchargement plateforme
 // ===========================================
 
-function startInstall(platform) {
-  if (installTriggered) return;
-  installTriggered = true;
+const WINDOWS_INSTALLER_URL =
+  'https://4d620107-5edb-451f-863d-bbb83ec81f39.s3.eu-west-1.amazonaws.com/desktop_app/update/installer/staging/productly_setup.exe';
 
-  showLoadingOverlay(platform);
-
+function logPlatformClick(platform) {
   const answers  = SpotterStorage.getAnswers() || {};
   const now      = new Date();
   const email    = answers.email || 'unknown';
   const vertical = answers._vertical || 'inconnu';
 
-  submitToFormspree(
-    {
-      submission_type: 'platform_clicked',
-      _subject: `[Spotter] Téléchargement ${platform} — ${email}`,
-      platform: platform,
-      vertical: vertical,
-      email: email,
-      visitor_ip: downloadIP || 'non disponible',
-      submitted_at: now.toISOString(),
-      submitted_at_local: formatLocalTime(now)
-    },
-    { wait: true }
-  ).then(() => {
-    goTo('maintenance.html');
+  submitToFormspree({
+    submission_type:   'platform_clicked',
+    _subject:          `[Spotter] Téléchargement ${platform} — ${email}`,
+    platform:          platform,
+    vertical:          vertical,
+    email:             email,
+    visitor_ip:        downloadIP || 'non disponible',
+    submitted_at:      now.toISOString(),
+    submitted_at_local: formatLocalTime(now)
   });
 }
 
-function showLoadingOverlay(platform) {
+function startInstall(platform) {
+  if (installTriggered) return;
+  installTriggered = true;
+
+  logPlatformClick(platform);
+
+  if (platform === 'macOS') {
+    showMacUnavailable();
+  } else {
+    showWindowsDownload();
+  }
+}
+
+function showWindowsDownload() {
   const installModal = document.getElementById('installModal');
   installModal.classList.add('show');
 
-  document.getElementById('installPlatform').textContent = platform;
-  document.getElementById('installIcon').textContent     = '📦';
-  document.getElementById('installTitle').textContent    = 'Préparation de votre app...';
-  document.getElementById('installStatus').textContent   = 'Connexion au serveur...';
+  document.getElementById('installPlatform').textContent = 'Windows';
+  document.getElementById('installIcon').textContent     = '⬇️';
+  document.getElementById('installTitle').textContent    = 'Téléchargement de Spotter...';
+  document.getElementById('installStatus').textContent   = 'Le téléchargement démarre.';
   document.getElementById('installProgress').style.width = '0%';
   document.getElementById('installPercent').textContent  = '';
 
+  // Petite anim visuelle pendant que le download démarre
   let progress = 0;
   const interval = setInterval(() => {
-    progress += 4;
-    if (progress > 95) progress = 95;
+    progress += 6;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      document.getElementById('installStatus').innerHTML =
+        '✓ Téléchargement lancé ! Si rien ne se passe, ' +
+        '<a href="' + WINDOWS_INSTALLER_URL + '" download style="color:#2d7d4f;font-weight:600;">clique ici</a>.';
+    }
     document.getElementById('installProgress').style.width = progress + '%';
-  }, 100);
+  }, 80);
+
+  // Déclenche le téléchargement
+  const a = document.createElement('a');
+  a.href = WINDOWS_INSTALLER_URL;
+  a.download = 'productly_setup.exe';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function showMacUnavailable() {
+  const installModal = document.getElementById('installModal');
+  installModal.classList.add('show');
+
+  document.getElementById('installPlatform').textContent = 'macOS';
+  document.getElementById('installIcon').textContent     = '🍎';
+  document.getElementById('installTitle').textContent    = 'Pas encore disponible sur Mac';
+  document.getElementById('installProgress').parentElement.style.display = 'none';
+  document.getElementById('installPercent').style.display = 'none';
+  document.getElementById('installStatus').innerHTML =
+    'Spotter pour macOS arrive très bientôt.<br>' +
+    'On revient vers toi par email dès que c\'est dispo — ton compte est déjà prêt.<br><br>' +
+    '<button onclick="closeInstallModal()" style="background:#1a1a1a;color:white;border:none;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">OK, j\'ai compris</button>';
+}
+
+function closeInstallModal() {
+  document.getElementById('installModal').classList.remove('show');
+  installTriggered = false;
+  // Restaure les éléments cachés pour macOS au cas où l'utilisateur recliquerait
+  document.getElementById('installProgress').parentElement.style.display = '';
+  document.getElementById('installPercent').style.display = '';
 }
 
 // ===========================================
