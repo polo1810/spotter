@@ -654,39 +654,62 @@
     .trust-creator {
       flex: 1;
       display: flex;
-      gap: 20px;
+      gap: 28px;
       align-items: flex-start;
     }
 
     .creator-photo {
-      width: 56px;
-      height: 56px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       background: var(--blue);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 42px;
       font-weight: 700;
       flex-shrink: 0;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+      border: 3px solid var(--white);
     }
 
     .creator-photo img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: 2;
     }
 
-    .creator-text { flex: 1; }
+    .creator-photo-initials {
+      position: relative;
+      z-index: 1;
+    }
+
+    .creator-text { flex: 1; min-width: 0; }
+
+    .creator-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
 
     .creator-text blockquote {
-      font-size: 15px;
+      font-size: 17px;
       color: var(--text-2);
-      line-height: 1.65;
-      margin-bottom: 12px;
+      line-height: 1.6;
+      margin-bottom: 16px;
       font-style: italic;
     }
 
@@ -700,28 +723,69 @@
       display: flex;
       align-items: baseline;
       gap: 8px;
+      margin-bottom: 18px;
     }
 
     .creator-n {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text);
     }
 
     .creator-r {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-3);
     }
 
-    .creator-linkedin {
-      color: var(--text-3);
-      transition: color 0.15s;
+    .creator-contact {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .creator-contact-label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .creator-contact-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .creator-contact-btn {
       display: inline-flex;
       align-items: center;
-      margin-left: 6px;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s, color 0.15s, border-color 0.15s;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text);
     }
 
-    .creator-linkedin:hover { color: #0a66c2; }
+    .creator-contact-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .creator-contact-btn.linkedin:hover {
+      background: #0a66c2;
+      color: white;
+      border-color: #0a66c2;
+    }
+
+    .creator-contact-btn.mail:hover {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
 
     .trust-divider {
       width: 1px;
@@ -859,6 +923,10 @@
       .trust-inner { flex-direction: column; gap: 32px; }
       .trust-divider { width: 100%; height: 1px; }
       .trust-security { flex: none; width: 100%; }
+      .trust-creator { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+      .creator-photo { width: 110px; height: 110px; font-size: 32px; }
+      .creator-name-row { justify-content: center; }
+      .creator-contact-btns { justify-content: center; }
 
       .cta-final { padding: 56px 0; }
     }
@@ -1097,10 +1165,11 @@
 
       <div class="trust-creator">
         <div class="creator-photo">
-          <!-- Remplace par : <img src="assets/paul.jpg" alt="Paul Girard"> -->
-          PG
+          <img src="/assets/paul.jpg" alt="Paul Girard, créateur de Spotter" onerror="this.style.display='none';">
+          <span class="creator-photo-initials">PG</span>
         </div>
         <div class="creator-text">
+          <div class="creator-tag">👋 Le créateur</div>
           <blockquote>
             « Je vois plein d'équipes se précipiter sur l'IA sans savoir
             où elles perdent vraiment du temps. Avec Spotter, j'inverse la logique :
@@ -1110,10 +1179,20 @@
           </blockquote>
           <div class="creator-name-row">
             <span class="creator-n">Paul Girard</span>
-            <span class="creator-r">· Créateur de Spotter</span>
-            <a href="https://www.linkedin.com/in/paul-girard-b4a2b01a9/" target="_blank" rel="noopener" class="creator-linkedin" aria-label="LinkedIn de Paul Girard">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
+            <span class="creator-r">· Fondateur</span>
+          </div>
+          <div class="creator-contact">
+            <span class="creator-contact-label">Une question, un retour ? Écris-moi :</span>
+            <div class="creator-contact-btns">
+              <a href="https://www.linkedin.com/in/paul-girard-b4a2b01a9/" target="_blank" rel="noopener" class="creator-contact-btn linkedin">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+              <a href="mailto:contact@spotter.app?subject=Question sur Spotter" class="creator-contact-btn mail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                M'écrire
+              </a>
+            </div>
           </div>
         </div>
       </div>
