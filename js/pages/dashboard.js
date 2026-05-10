@@ -78,7 +78,10 @@ function renderEmptyState(client) {
         <h1>${escapeHtml(client.cabinet_name || client.email)}</h1>
         <div class="info">${escapeHtml(client.cabinet_info || capitalize(client.vertical || 'En attente'))}</div>
       </div>
-      <div class="period-badge pending">Analyse en cours</div>
+      <div class="page-header-actions">
+        ${renderPreviewToggleBtn(false)}
+        <div class="period-badge pending">Analyse en cours</div>
+      </div>
     </div>
 
     <div class="waiting-banner">
@@ -104,56 +107,98 @@ function renderEmptyState(client) {
       <div class="empty-autos-sub">Une fois l'analyse terminée, on vous proposera ici des automatisations <strong>conçues spécifiquement pour vos pertes de temps</strong>, activables en un clic.</div>
     </div>
 
-    ${renderPreviewSection()}
+    ${renderPreviewSection(client, { hidden: false })}
   `;
 }
 
 // ===========================================
-// SECTION APERÇU (démo de ce à quoi ressemble le dashboard une fois rempli)
+// SECTION APERÇU (démo : ce à quoi ressemble le dashboard une fois rempli)
+// Données indexées par vertical pour que les exemples parlent au métier du client
 // ===========================================
 
-const PREVIEW_REPETITIONS = [
-  { libelle: "Renommage manuel pièces OCR",         description: "Correction du nom fournisseur ou date après OCR Pennylane",   frequence: 87, frequence_unit: 'semaine', temps_perdu_minutes: 165, statut: 'detected' },
-  { libelle: "Réponses récurrentes par mail",       description: "Mêmes formulations envoyées plusieurs fois aux clients",       frequence: 52, frequence_unit: 'semaine', temps_perdu_minutes: 135, statut: 'automatable' },
-  { libelle: "Export Pennylane → Excel reportings", description: "Retraitement manuel pour reportings clients mensuels",          frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 110, statut: 'automatable' },
-  { libelle: "Saisie multi-endroits info client",   description: "Mise à jour adresse/RIB sur Pennylane + Excel suivi",           frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 55,  statut: 'detected' },
-  { libelle: "Vérification cohérence TVA",          description: "Contrôle manuel entre Pennylane et déclaration",                frequence: 6,  frequence_unit: 'mois',    temps_perdu_minutes: 45,  statut: 'automated' },
-];
+const PREVIEW_DATA = {
+  comptable: {
+    repetitions: [
+      { libelle: "Renommage manuel pièces OCR",         description: "Correction du nom fournisseur ou date après OCR Pennylane",   frequence: 87, frequence_unit: 'semaine', temps_perdu_minutes: 165, statut: 'detected' },
+      { libelle: "Réponses récurrentes par mail",       description: "Mêmes formulations envoyées plusieurs fois aux clients",       frequence: 52, frequence_unit: 'semaine', temps_perdu_minutes: 135, statut: 'automatable' },
+      { libelle: "Export Pennylane → Excel reportings", description: "Retraitement manuel pour reportings clients mensuels",          frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 110, statut: 'automatable' },
+      { libelle: "Saisie multi-endroits info client",   description: "Mise à jour adresse/RIB sur Pennylane + Excel suivi",           frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 55,  statut: 'detected' },
+      { libelle: "Vérification cohérence TVA",          description: "Contrôle manuel entre Pennylane et déclaration",                frequence: 6,  frequence_unit: 'mois',    temps_perdu_minutes: 45,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Auto-correction OCR fournisseurs récurrents",
+        desc:  "On identifie les fournisseurs qui posent problème à l'OCR et on pré-paramètre une règle de mapping qui corrige automatiquement le nom + la date.",
+        gain:  "+2h15/sem",
+        tools: ["Pennylane"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Templates de réponse mail intelligents",
+        desc:  "Les 5 réponses-types qui reviennent dans 80% de vos mails clients sont transformées en raccourcis Outlook, prêts à l'emploi.",
+        gain:  "+1h50/sem",
+        tools: ["Outlook"],
+        effort: "0 ligne de code · 1 minute"
+      },
+      {
+        title: "Export Pennylane → reporting client en 1 clic",
+        desc:  "On automatise le retraitement Excel mensuel : extraction Pennylane, mise en forme, envoi au client.",
+        gain:  "+1h30/sem",
+        tools: ["Pennylane", "Excel", "Outlook"],
+        effort: "0 ligne de code · 3 minutes"
+      }
+    ]
+  },
 
-const PREVIEW_AUTOS = [
-  {
-    title: "Auto-correction OCR fournisseurs récurrents",
-    desc:  "On identifie les fournisseurs qui posent problème à l'OCR et on pré-paramètre une règle de mapping qui corrige automatiquement le nom + la date.",
-    gain:  "+2h15/sem",
-    tools: ["Pennylane"],
-    effort: "0 ligne de code · 2 minutes"
-  },
-  {
-    title: "Templates de réponse mail intelligents",
-    desc:  "Les 5 réponses-types qui reviennent dans 80% de vos mails clients sont transformées en raccourcis Outlook, prêts à l'emploi.",
-    gain:  "+1h50/sem",
-    tools: ["Outlook"],
-    effort: "0 ligne de code · 1 minute"
-  },
-  {
-    title: "Export Pennylane → reporting client en 1 clic",
-    desc:  "On automatise le retraitement Excel mensuel : extraction Pennylane, mise en forme, envoi au client.",
-    gain:  "+1h30/sem",
-    tools: ["Pennylane", "Excel", "Outlook"],
-    effort: "0 ligne de code · 3 minutes"
+  recrutement: {
+    repetitions: [
+      { libelle: "Reformatage de CVs avant envoi client",        description: "Adaptation manuelle au template du cabinet (logo, sections, mise en page)", frequence: 35,  frequence_unit: 'semaine', temps_perdu_minutes: 165, statut: 'automatable' },
+      { libelle: "Messages LinkedIn de prise de contact",        description: "Mêmes formulations envoyées sur des dizaines de profils similaires",        frequence: 120, frequence_unit: 'semaine', temps_perdu_minutes: 200, statut: 'detected'    },
+      { libelle: "Mise à jour fiche candidat dans l'ATS",        description: "Recopie d'infos depuis LinkedIn / mail vers l'ATS (Workable, Lever...)",    frequence: 45,  frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'automatable' },
+      { libelle: "Reportings hebdo aux clients",                 description: "Compilation manuelle d'un point d'avancement par mission, par client",       frequence: 8,   frequence_unit: 'semaine', temps_perdu_minutes: 60,  statut: 'automatable' },
+      { libelle: "Recherches LinkedIn récurrentes",              description: "Mêmes filtres / mêmes booléens lancés chaque semaine pour scanner le marché",frequence: 25,  frequence_unit: 'semaine', temps_perdu_minutes: 50,  statut: 'automated'   },
+    ],
+    autos: [
+      {
+        title: "Auto-formatage CV au template cabinet",
+        desc:  "À chaque CV reçu, on l'extrait automatiquement et on le reformate aux couleurs et à la mise en page du cabinet, prêt à envoyer au client.",
+        gain:  "+2h45/sem",
+        tools: ["Outlook", "Drive"],
+        effort: "0 ligne de code · 3 minutes"
+      },
+      {
+        title: "Templates LinkedIn personnalisés intelligents",
+        desc:  "Vos 5 messages-types les plus utilisés en raccourci, avec personnalisation auto (prénom, poste, entreprise) à partir du profil LinkedIn.",
+        gain:  "+2h00/sem",
+        tools: ["LinkedIn"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Sync ATS automatique depuis LinkedIn",
+        desc:  "Plus besoin de recopier : à chaque candidat ajouté dans LinkedIn Recruiter, sa fiche se crée automatiquement dans votre ATS avec les infos extraites.",
+        gain:  "+1h30/sem",
+        tools: ["LinkedIn", "Workable"],
+        effort: "0 ligne de code · 4 minutes"
+      }
+    ]
   }
-];
+};
 
-function renderPreviewSection() {
-  const stats = computeStats(PREVIEW_REPETITIONS);
+function getPreviewData(vertical) {
+  return PREVIEW_DATA[vertical] || PREVIEW_DATA.comptable;
+}
+
+function renderPreviewSection(client, { hidden = false } = {}) {
+  const data = getPreviewData(client && client.vertical);
+  const stats = computeStats(data.repetitions);
 
   return `
-    <div class="preview-section">
+    <div id="previewWrapper" class="preview-section" style="${hidden ? 'display:none;' : ''}">
       <div class="preview-banner">
         <div class="preview-banner-icon">👁️</div>
         <div class="preview-banner-text">
           <div class="preview-banner-title">Aperçu — voici à quoi ressemblera votre dashboard</div>
-          <div class="preview-banner-sub">Ces données sont fictives. Elles vous donnent une idée concrète de ce que vous verrez une fois l'analyse terminée.</div>
+          <div class="preview-banner-sub">Ces données sont fictives, choisies pour ton métier. Elles donnent une idée concrète de ce que tu verras une fois l'analyse terminée.</div>
         </div>
       </div>
 
@@ -177,15 +222,43 @@ function renderPreviewSection() {
 
       <div class="section-title">📊 Top des actions répétitives détectées</div>
       <div class="actions-table">
-        ${PREVIEW_REPETITIONS.map(renderRepetitionRow).join('')}
+        ${data.repetitions.map(renderRepetitionRow).join('')}
       </div>
 
       <div class="section-title">⚡ Automatisations prêtes à activer</div>
       <div class="auto-list">
-        ${PREVIEW_AUTOS.map(renderPreviewAutoCard).join('')}
+        ${data.autos.map(renderPreviewAutoCard).join('')}
       </div>
     </div>
   `;
+}
+
+// Bouton toggle visible en permanence dans la page-header
+function renderPreviewToggleBtn(initiallyHidden) {
+  return `
+    <button class="preview-toggle-btn" id="previewToggleBtn" data-hidden="${initiallyHidden ? '1' : '0'}">
+      ${initiallyHidden ? '👁️ Voir l\'aperçu démo' : '✕ Masquer l\'aperçu'}
+    </button>
+  `;
+}
+
+// Toggle global, déclenché par le bouton
+function togglePreview() {
+  const wrapper = document.getElementById('previewWrapper');
+  const btn     = document.getElementById('previewToggleBtn');
+  if (!wrapper || !btn) return;
+
+  const isHidden = wrapper.style.display === 'none';
+  if (isHidden) {
+    wrapper.style.display = '';
+    btn.textContent = '✕ Masquer l\'aperçu';
+    btn.dataset.hidden = '0';
+    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    wrapper.style.display = 'none';
+    btn.textContent = '👁️ Voir l\'aperçu démo';
+    btn.dataset.hidden = '1';
+  }
 }
 
 function renderPreviewAutoCard(a) {
@@ -224,7 +297,10 @@ function renderLoadedState(client, repetitions) {
         <h1>${escapeHtml(client.cabinet_name || client.email)}</h1>
         <div class="info">${escapeHtml(client.cabinet_info || capitalize(client.vertical || ''))}</div>
       </div>
-      <div class="period-badge">${escapeHtml(client.period_label || 'Période en cours')}</div>
+      <div class="page-header-actions">
+        ${renderPreviewToggleBtn(true)}
+        <div class="period-badge">${escapeHtml(client.period_label || 'Période en cours')}</div>
+      </div>
     </div>
 
     <div class="stats">
@@ -249,6 +325,8 @@ function renderLoadedState(client, repetitions) {
     <div class="actions-table">
       ${repetitions.map(renderRepetitionRow).join('')}
     </div>
+
+    ${renderPreviewSection(client, { hidden: true })}
   `;
 }
 
@@ -335,6 +413,10 @@ async function loadDashboard() {
   } else {
     dashboardEl.innerHTML = renderLoadedState(client, currentRepetitions);
   }
+
+  // 6) Bouton toggle de l'aperçu démo
+  const toggleBtn = document.getElementById('previewToggleBtn');
+  if (toggleBtn) toggleBtn.addEventListener('click', togglePreview);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

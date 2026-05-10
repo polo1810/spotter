@@ -562,6 +562,34 @@ main {
   letter-spacing: 0.5px;
 }
 
+/* === BOUTON TOGGLE APERÇU (toujours visible dans la page-header) === */
+.page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.preview-toggle-btn {
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #e5e3dd;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.preview-toggle-btn:hover {
+  background: #f7f6f3;
+  border-color: #c4bfb0;
+  transform: translateY(-1px);
+}
+
 .activated-badge {
   display: inline-flex;
   align-items: center;
