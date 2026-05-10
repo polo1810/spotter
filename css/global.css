@@ -1,113 +1,339 @@
 /* ===========================================
-   SPOTTER · Styles globaux partagés
+   SPOTTER · Design system — tokens + base
+   ===========================================
+   Inspiré de Linear / Vercel / Stripe.
+   Papier crème chaud, encre profonde, accent vert mousse "détection".
+   Typographie Geist + Geist Mono. Pas d'emoji dans le UI : tout est texte ou SVG.
+*/
+
+:root {
+  /* ----- couleurs ----- */
+  --bg:           oklch(0.985 0.003 80);
+  --bg-elev:      oklch(1 0 0);
+  --bg-sunk:      oklch(0.965 0.004 80);
+  --ink:          oklch(0.18 0.005 240);
+  --ink-2:        oklch(0.32 0.006 240);
+  --muted:        oklch(0.52 0.006 240);
+  --faint:        oklch(0.72 0.005 240);
+  --border:       oklch(0.91 0.004 80);
+  --border-strong:oklch(0.84 0.006 80);
+
+  --accent:      oklch(0.48 0.09 155);
+  --accent-ink:  oklch(0.32 0.07 155);
+  --accent-soft: oklch(0.94 0.04 155);
+  --accent-fg:   oklch(0.985 0.003 80);
+
+  --warn:        oklch(0.72 0.13 70);
+  --warn-soft:   oklch(0.96 0.04 80);
+  --danger:      oklch(0.55 0.15 25);
+
+  /* ----- rayons / ombres ----- */
+  --radius:    10px;
+  --radius-lg: 14px;
+  --radius-sm: 6px;
+
+  --shadow-sm: 0 1px 0 oklch(0.91 0.004 80 / 0.7), 0 1px 2px oklch(0.5 0 0 / 0.04);
+  --shadow-md: 0 1px 0 oklch(0.91 0.004 80 / 0.7), 0 4px 14px oklch(0.5 0 0 / 0.06), 0 24px 48px -24px oklch(0.5 0 0 / 0.18);
+  --shadow-lg: 0 1px 0 oklch(0.91 0.004 80 / 0.7), 0 8px 24px oklch(0.5 0 0 / 0.08), 0 48px 96px -32px oklch(0.5 0 0 / 0.22);
+
+  /* ----- layout ----- */
+  --maxw:  1200px;
+  --pad-x: clamp(20px, 4vw, 56px);
+
+  /* ----- type ----- */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ===========================================
+   Reset + base
    =========================================== */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  background: #f7f6f3;
-  color: #1a1a1a;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
   min-height: 100vh;
 }
 
-/* === BUTTONS === */
-.btn {
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+::selection { background: var(--accent); color: var(--accent-fg); }
+
+/* ===========================================
+   Layout primitives
+   =========================================== */
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+}
+
+.divider { height: 1px; background: var(--border); width: 100%; }
+
+/* ===========================================
+   Typographie
+   =========================================== */
+
+h1, h2, h3, h4 {
   font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.15s, transform 0.15s;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(40px, 5.4vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+h1 em { font-style: normal; color: var(--accent-ink); }
+
+h1 .underline {
+  background-image: linear-gradient(transparent 65%, color-mix(in oklch, var(--accent) 35%, transparent) 65%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 0 2px;
+}
+
+h2 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+h3 { font-size: 19px; line-height: 1.3; }
+
+/* ===========================================
+   Boutons
+   =========================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all .15s ease;
+  white-space: nowrap;
   font-family: inherit;
-}
-.btn:hover { opacity: 0.9; }
-.btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.btn-primary { background: #2d7d4f; color: white; padding: 12px 18px; }
-.btn-secondary { background: #f0eee8; color: #6b6b6b; padding: 12px 18px; }
-.btn-dark { background: #1a1a1a; color: white; padding: 12px 18px; }
-.btn-blue { background: #1e5a8a; color: white; padding: 12px 18px; }
-
-.btn-large {
-  padding: 18px 32px;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 12px;
+  cursor: pointer;
 }
 
-/* === ANIMATIONS === */
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.1);
+}
+.btn-primary:hover { background: oklch(from var(--ink) calc(l + 0.08) c h); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+.btn-ghost:hover { background: var(--bg-sunk); }
+
+.btn-quiet { background: transparent; color: var(--muted); border-color: transparent; }
+.btn-quiet:hover { color: var(--ink); }
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--accent-fg);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.18), 0 1px 2px oklch(0 0 0 / 0.1);
+}
+.btn-accent:hover { background: oklch(from var(--accent) calc(l + 0.04) c h); }
+
+.btn-lg { height: 46px; padding: 0 22px; font-size: 15px; border-radius: 11px; }
+
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ===========================================
+   Composants partagés
+   =========================================== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+.chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 25%, transparent);
+}
+
+.chip-dot.warn {
+  background: var(--warn);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--warn) 25%, transparent);
+}
+
+@keyframes pulse-fade {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .55; }
+}
+
+.chip-dot.live { animation: pulse-fade 2.4s ease-in-out infinite; }
+
+/* Brand mark — petit logo carré noir avec cercle vert au centre */
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3.5px var(--ink), inset 0 0 0 5px var(--accent);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+/* ===========================================
+   Sections
+   =========================================== */
+
+section {
+  padding: clamp(64px, 9vw, 120px) 0;
+}
+
+section + section { border-top: 1px solid var(--border); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 32px 64px;
+  align-items: end;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+@media (max-width: 760px) {
+  .section-head { grid-template-columns: 1fr; }
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.section-lede {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+/* ===========================================
+   Animations partagées (héritées de l'ancienne version)
+   =========================================== */
+
 @keyframes popIn {
   from { opacity: 0; transform: scale(0.92) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
+  0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
-}
-
-@keyframes pulse {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-@keyframes checkPop {
-  0% { transform: scale(0); }
-  60% { transform: scale(1.15); }
-  100% { transform: scale(1); }
 }
 
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* === SHARED COMPONENTS === */
+/* ===========================================
+   Composants partagés legacy (modals, spinners…)
+   Conservés pour compatibilité avec les autres pages
+   en attendant leur refonte.
+   =========================================== */
+
 .spinner {
   width: 14px;
   height: 14px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-top-color: white;
+  border: 2px solid color-mix(in oklch, var(--bg) 30%, transparent);
+  border-top-color: var(--bg);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   display: inline-block;
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f0eee8 0%, #e5e3dd 50%, #f0eee8 100%);
+  background: linear-gradient(90deg, var(--bg-sunk) 0%, var(--border) 50%, var(--bg-sunk) 100%);
   background-size: 200% 100%;
   animation: shimmer 1.8s infinite;
   border-radius: 4px;
   display: inline-block;
 }
 
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  background: #d97706;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-}
-.pulse-dot::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 2px solid #d97706;
-  opacity: 0.4;
-  animation: pulse 1.5s infinite;
-}
-
-/* === OVERLAY / MODALS === */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: oklch(0.18 0.005 240 / 0.5);
   display: none;
   align-items: center;
   justify-content: center;
@@ -117,10 +343,10 @@ body {
 .overlay.show { display: flex; }
 
 .modal-card {
-  background: white;
+  background: var(--bg-elev);
   border-radius: 16px;
   width: 100%;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-lg);
   animation: popIn 0.3s ease-out;
   overflow: hidden;
 }

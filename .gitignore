@@ -1,6 +1,9 @@
 # Dossier Claude Code (local)
 .claude/
 
+# Bundle source de Claude Design (référence uniquement, ne pas commiter)
+.design-source/
+
 # Système
 .DS_Store
 Thumbs.db
