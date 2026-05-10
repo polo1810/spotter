@@ -1,0 +1,39 @@
+<!-- ======================== MÉTIERS ======================== -->
+<section id="metiers">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Choisis ton métier</div>
+        <h2>L'analyse s'adapte à ton métier — pas l'inverse.</h2>
+      </div>
+      <p class="section-lede">
+        Chaque métier a ses outils, ses gestes, ses pertes de temps spécifiques.
+        On a déjà calibré Spotter pour les profils ci-dessous. Sélectionne le tien
+        pour commencer le questionnaire.
+      </p>
+    </div>
+
+    <div class="metiers-search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m20 20-3.5-3.5" stroke-linecap="round"/>
+      </svg>
+      <input type="text" id="metiersSearch" placeholder="Cherche ton métier ou ton outil (ex: Pennylane, LinkedIn…)" autocomplete="off">
+      <span class="kbd">⌘K</span>
+    </div>
+
+    <div class="metiers-grid" id="metiersGrid"><!-- injecté par js/pages/landing.js --></div>
+
+    <div id="metiersNoResults" class="metiers-noresults" style="display:none;">
+      Aucun métier trouvé pour cette recherche.
+      <a href="mailto:contact@spotter.app?subject=Mon métier n'est pas dans la liste">Dis-le-nous</a>,
+      on l'ajoute sous 48h.
+    </div>
+
+    <p class="metiers-foot">
+      Ton métier n'est pas dans la liste ?
+      <a href="mailto:contact@spotter.app?subject=Mon métier n'est pas dans la liste">Dis-le-nous</a>,
+      on l'ajoute sous 48h.
+    </p>
+  </div>
+</section>

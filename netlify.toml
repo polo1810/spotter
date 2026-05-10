@@ -1,0 +1,33 @@
+# ============================================================
+# SPOTTER · Configuration Netlify
+# ============================================================
+# Build : assemble index.html à partir des partials src/landing/*
+# (cf. tools/build.js).
+# ============================================================
+
+[build]
+  command = "node tools/build.js"
+  publish = "."
+
+# Cache long pour les assets statiques (CSS, JS, fonts, images).
+# Le HTML reste en cache court pour que les changements soient
+# visibles rapidement.
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
