@@ -1,14 +1,15 @@
 # ============================================================
 # SPOTTER · Configuration Netlify
 # ============================================================
-# Site 100% statique — aucun build step.
-# La landing s'auto-compose au chargement à partir des partials
-# de /partials/landing/ (cf. /js/pages/landing.js).
+# Build : tools/build.js concatène les partials landing → index.html
+# (cf. README.md section "Architecture landing")
 # ============================================================
 
-# Cache long pour les assets statiques (CSS, JS, fonts, images,
-# partials HTML). Les visiteurs récurrents chargent le site
-# quasi instantanément.
+[build]
+  command = "node tools/build.js"
+  publish = "."
+
+# Cache long pour les assets statiques (CSS, JS, fonts, images).
 [[headers]]
   for = "/css/*"
   [headers.values]
@@ -24,13 +25,7 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/partials/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
-
-# Le HTML reste en cache court pour que les changements ressortent
-# rapidement.
+# HTML en cache court pour que les changements ressortent vite.
 [[headers]]
   for = "/*.html"
   [headers.values]

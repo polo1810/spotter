@@ -1,43 +1,12 @@
 // ===========================================
-// SPOTTER · Landing — orchestrateur
+// SPOTTER · Landing — interactivité (grille métiers + recherche)
 // ===========================================
-// 1) Charge en parallèle les 9 partials de /partials/landing/*.html
-// 2) Les insère en ordre dans #app
-// 3) Branche la grille des métiers + la barre de recherche
-//    (qui dépend de VERTICALS chargé depuis /js/lib/verticals.js)
-
-const SECTIONS = [
-  'nav',
-  'hero',
-  'metiers',
-  'how-it-works',
-  'privacy',
-  'founder',
-  'faq',
-  'final-cta',
-  'footer',
-];
-
-// ---------- Chargement parallèle des partials ----------
-async function loadAllSections() {
-  const responses = await Promise.all(
-    SECTIONS.map(async name => {
-      const res = await fetch(`/partials/landing/${name}.html`);
-      if (!res.ok) {
-        console.error(`[landing] ${name}.html — HTTP ${res.status}`);
-        return '';
-      }
-      return res.text();
-    })
-  );
-
-  // On insère le tout d'un coup pour éviter des reflows successifs
-  document.getElementById('app').innerHTML = responses.join('\n');
-}
-
-// ===========================================
-// Grille des métiers + recherche
-// ===========================================
+// Le contenu de la page est déjà dans le HTML servi (généré par
+// tools/build.js à partir des partials de /partials/landing/).
+// Ce script s'occupe uniquement de :
+//   - peupler la grille des métiers à partir de VERTICALS
+//   - filtrer la grille selon la recherche
+//   - brancher le raccourci ⌘K / Ctrl+K
 
 const METIERS_META = {
   comptable:   { tools: 'Pennylane · Cegid · Outlook',   peers: '1 200+ équipes' },
@@ -50,7 +19,13 @@ const METIERS_META = {
   formation:   { tools: 'Digiforma · Moodle · Outlook',  peers: '180+ équipes'   },
 };
 
-function bindMetiersGrid() {
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+(function () {
   const grid        = document.getElementById('metiersGrid');
   const searchInput = document.getElementById('metiersSearch');
   const noResults   = document.getElementById('metiersNoResults');
@@ -68,12 +43,6 @@ function bindMetiersGrid() {
                   .filter(Boolean).join(' ').toLowerCase(),
     };
   });
-
-  function escapeHtml(s) {
-    if (s == null) return '';
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-  }
 
   function render(filtered) {
     if (filtered.length === 0) {
@@ -113,20 +82,5 @@ function bindMetiersGrid() {
         searchInput.select();
       }
     });
-  }
-}
-
-// ===========================================
-// Init
-// ===========================================
-
-(async function init() {
-  try {
-    await loadAllSections();
-    bindMetiersGrid();
-  } catch (err) {
-    console.error('[landing] init failed:', err);
-    document.getElementById('app').innerHTML =
-      '<p style="padding:40px;text-align:center;color:#888;">Erreur de chargement. Recharge la page.</p>';
   }
 })();
