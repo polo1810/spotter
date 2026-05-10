@@ -28,19 +28,53 @@
         <div class="download-recap-line"><span class="check">✓</span> Détection ciblée sur vos zones de friction</div>
         <div class="download-recap-line"><span class="check">✓</span> Calibrage des seuils selon votre estimation</div>
       </div>
-      
-      <div class="download-platforms">
-        <button class="platform-btn" data-platform="macOS">
-          <span class="platform-icon">🍎</span> macOS
-        </button>
-        <button class="platform-btn" data-platform="Windows">
-          <span class="platform-icon">🪟</span> Windows
+
+      <!-- ÉTAPE 1 : créer son mot de passe pour accéder au dashboard -->
+      <div id="passwordStep" class="password-step">
+        <div class="password-step-title">Crée ton accès dashboard</div>
+        <div class="password-step-sub">
+          Pour pouvoir te reconnecter à ton dashboard plus tard depuis n'importe quel appareil.
+        </div>
+        <div class="password-field">
+          <label class="password-label">Email</label>
+          <input type="email" id="passwordEmail" class="password-input" readonly />
+        </div>
+        <div class="password-field">
+          <label class="password-label">Mot de passe</label>
+          <input type="password" id="passwordInput" class="password-input"
+                 placeholder="6 caractères minimum" autocomplete="new-password" />
+        </div>
+        <div class="password-field">
+          <label class="password-label">Confirme</label>
+          <input type="password" id="passwordConfirm" class="password-input"
+                 placeholder="Re-tape ton mot de passe" autocomplete="new-password" />
+        </div>
+        <div class="password-error" id="passwordError"></div>
+        <button class="password-submit" id="passwordSubmit" disabled>
+          Créer mon compte et continuer →
         </button>
       </div>
-      
-      <div class="download-note">
-        L'installation prend ~30 secondes.<br>
-        Aucune saisie requise après le téléchargement.
+
+      <!-- ÉTAPE 2 : choix de la plateforme (caché tant que le mot de passe n'est pas créé) -->
+      <div id="platformStep" class="platform-step" style="display:none;">
+        <div class="password-success">
+          <span class="check">✓</span>
+          Compte créé. Tu pourras te reconnecter à <a href="login.html">login.html</a> à tout moment.
+        </div>
+
+        <div class="download-platforms">
+          <button class="platform-btn" data-platform="macOS">
+            <span class="platform-icon">🍎</span> macOS
+          </button>
+          <button class="platform-btn" data-platform="Windows">
+            <span class="platform-icon">🪟</span> Windows
+          </button>
+        </div>
+
+        <div class="download-note">
+          L'installation prend ~30 secondes.<br>
+          Aucune saisie requise après le téléchargement.
+        </div>
       </div>
     </div>
   </div>
@@ -61,6 +95,9 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/download.js"></script>
 

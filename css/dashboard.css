@@ -64,6 +64,70 @@ aside {
 
 .cabinet-text { display: flex; flex-direction: column; }
 
+/* === SIDEBAR USER (nouveau dashboard Supabase) === */
+.sidebar-user {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.sidebar-user-email {
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  word-break: break-all;
+  margin-bottom: 4px;
+}
+
+.sidebar-user-vertical {
+  font-size: 11px;
+  color: #888;
+  text-transform: capitalize;
+}
+
+.sidebar-signout {
+  background: transparent;
+  border: 1px solid #3a3a3a;
+  color: #ccc;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.sidebar-signout:hover {
+  background: #2a2a2a;
+  color: white;
+  border-color: #555;
+}
+
+.dashboard-loading {
+  color: #888;
+  font-size: 14px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.statut-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+}
+
+.statut-detected    { background: #fef3c7; color: #92400e; }
+.statut-automatable { background: #dbeafe; color: #1e40af; }
+.statut-automated   { background: #dcfce7; color: #166534; }
+
 main {
   padding: 32px 40px;
   overflow-y: auto;

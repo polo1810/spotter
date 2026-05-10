@@ -165,7 +165,7 @@ function collectAnswers() {
 // SOUMISSION
 // ===========================================
 
-function saveAnswersAndConfigure() {
+async function saveAnswersAndConfigure() {
   if (configureStarted) return;
   configureStarted = true;
 
@@ -181,6 +181,27 @@ function saveAnswersAndConfigure() {
     hour: '2-digit', minute: '2-digit', second: '2-digit'
   });
 
+  // 1) Insertion / mise à jour du client en base Supabase
+  if (window.spotterDB && answers.email) {
+    try {
+      const { data: client, error } = await window.spotterDB.upsertClientFromQuestionnaire({
+        email:    answers.email,
+        vertical: verticalKey,
+        answers:  answers,
+        ip:       clientIP || null,
+      });
+      if (error) {
+        console.warn('[Spotter] Insert client Supabase a échoué:', error);
+      } else if (client) {
+        // On stocke aussi l'ID client pour la suite (download.js)
+        sessionStorage.setItem('spotter_client_id', client.id);
+      }
+    } catch (e) {
+      console.warn('[Spotter] Erreur Supabase:', e);
+    }
+  }
+
+  // 2) Notification Formspree (conservée pour traçabilité interne)
   const payload = {
     submission_type: 'questionnaire_completed',
     _subject: `[Spotter] Questionnaire — ${currentVertical.label}`,
@@ -190,7 +211,6 @@ function saveAnswersAndConfigure() {
     submitted_at_local: localTime,
   };
 
-  // Aplatit toutes les réponses dans le payload
   currentVertical.questions.forEach(q => {
     const val = answers[q.id];
     if (val === undefined || val === null) return;

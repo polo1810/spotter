@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion · Spotter</title>
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="login-page">
+  <div class="login-card">
+    <a href="index.html" class="login-back">← Retour</a>
+
+    <div class="login-header">
+      <div class="login-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="2"/>
+          <line x1="12" y1="6" x2="12" y2="12" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="16" y2="14" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Spotter</span>
+      </div>
+      <h1>Connexion à votre dashboard</h1>
+      <p class="login-sub">Avec l'email et le mot de passe créés au moment du téléchargement.</p>
+    </div>
+
+    <form id="loginForm" class="login-form" onsubmit="return false;">
+      <div class="login-field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="vous@cabinet.fr" autocomplete="email" required />
+      </div>
+
+      <div class="login-field">
+        <label for="loginPassword">Mot de passe</label>
+        <input type="password" id="loginPassword" placeholder="••••••" autocomplete="current-password" required />
+      </div>
+
+      <div class="login-error" id="loginError"></div>
+
+      <button type="submit" id="loginSubmit" class="login-submit">
+        Se connecter →
+      </button>
+    </form>
+
+    <div class="login-footer">
+      Pas encore de compte ? <a href="index.html#metiers">Démarrer le questionnaire</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/login.js"></script>
+
+</body>
+</html>

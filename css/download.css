@@ -198,3 +198,113 @@
 @media (max-width: 800px) {
   .download-platforms { grid-template-columns: 1fr; }
 }
+
+/* === ÉTAPE MOT DE PASSE === */
+.password-step {
+  margin-bottom: 8px;
+}
+
+.password-step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+
+.password-step-sub {
+  font-size: 12px;
+  color: #6b6b6b;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.password-field {
+  margin-bottom: 10px;
+}
+
+.password-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b6b6b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 5px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0ddd5;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: white;
+  color: #1a1a1a;
+  transition: border-color 0.15s;
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: #2d7d4f;
+}
+
+.password-input[readonly] {
+  background: #f7f6f3;
+  color: #6b6b6b;
+}
+
+.password-error {
+  font-size: 12px;
+  color: #c0392b;
+  min-height: 16px;
+  margin: 4px 0 8px;
+}
+
+.password-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #2d7d4f 0%, #3ea569 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.password-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.password-submit:not(:disabled):hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.password-success {
+  background: #e8f5ed;
+  border: 1px solid #b8dec8;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #1d5e37;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.password-success .check {
+  color: #2d7d4f;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.password-success a {
+  color: #2d7d4f;
+  font-weight: 600;
+}

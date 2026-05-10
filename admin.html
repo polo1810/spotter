@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Spotter</title>
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- Vérification de session en cours -->
+<div id="adminGate" class="admin-gate">
+  <div class="admin-gate-card">
+    <div class="admin-gate-title">🔒 Vérification...</div>
+    <p class="admin-gate-sub" id="gateMessage">On vérifie ta session admin.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD ADMIN (caché jusqu'à validation de la session) -->
+<div id="adminApp" class="admin-app" style="display:none;">
+  <aside class="admin-sidebar">
+    <div class="admin-logo">⏱ Spotter <span class="admin-tag">ADMIN</span></div>
+
+    <div class="admin-nav-label">Clients</div>
+    <input type="text" id="clientSearch" class="admin-search" placeholder="Rechercher par email..." />
+    <ul id="clientList" class="admin-client-list"></ul>
+
+    <button id="adminSignOutBtn" class="admin-signout">Déconnexion</button>
+  </aside>
+
+  <main class="admin-main">
+    <div id="adminContent">
+      <div class="admin-empty-main">
+        <div class="admin-empty-icon">👈</div>
+        <div>Sélectionne un client à gauche pour gérer ses répétitions.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>
