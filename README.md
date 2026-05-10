@@ -84,34 +84,45 @@ Utilise toujours un serveur local.
 
 ```
 spotter/
-├── index.html              # Landing
-├── questionnaire.html      # Questionnaire (INSERT client en base)
-├── download.html           # Création mot de passe + choix plateforme
+├── index.html              # Landing (sélection vertical)
+├── questionnaire.html      # Questionnaire → INSERT client
+├── download.html           # Création mot de passe + téléchargement
 ├── login.html              # Connexion client existant
-├── dashboard.html          # Dashboard client (vraies données)
+├── dashboard.html          # Dashboard client (données Supabase)
 ├── admin.html              # Espace admin (CRUD répétitions)
-├── supabase-schema.sql     # Schéma SQL à exécuter dans Supabase
-├── css/
-│   ├── global.css          # Styles partagés
-│   ├── landing.css         # Styles landing
-│   ├── questionnaire.css   # Styles questionnaire
-│   ├── download.css        # Styles download (+ étape password)
-│   ├── login.css           # Styles login
-│   ├── dashboard.css       # Styles dashboard
-│   └── admin.css           # Styles admin
-├── js/
-│   ├── supabase-config.js  # ⚠️ À configurer (URL + anon key + admin)
-│   ├── supabase-client.js  # Wrapper Supabase + helpers (auth, queries)
-│   ├── utils.js            # Storage, IP, validation email...
-│   ├── verticals.js        # Définition des questionnaires par métier
-│   ├── landing.js          # Génération des cartes métier
-│   ├── questionnaire.js    # Logique questionnaire (INSERT client)
-│   ├── download.js         # Logique download (signUp + choix plateforme)
-│   ├── login.js            # Logique login
-│   ├── dashboard.js        # Logique dashboard (fetch reps + render)
-│   └── admin.js            # Logique admin (gate + CRUD)
-└── README.md
+│
+├── supabase-schema.sql     # SQL à exécuter dans Supabase (1 fois)
+├── _redirects              # Aliases Netlify (/comptable, /recrutement)
+│
+├── css/                    # 1 fichier par page + global.css
+│   ├── global.css
+│   ├── landing.css
+│   ├── questionnaire.css
+│   ├── download.css
+│   ├── login.css
+│   ├── dashboard.css
+│   └── admin.css
+│
+└── js/
+    ├── lib/                # Code partagé entre plusieurs pages
+    │   ├── supabase-config.js   # ⚠️ Credentials Supabase (à configurer)
+    │   ├── supabase-client.js   # Wrapper Supabase (auth, queries)
+    │   ├── utils.js             # Storage, IP, validation email
+    │   └── verticals.js         # Définition des verticaux + questionnaires
+    │
+    └── pages/              # 1 fichier = 1 page (logique spécifique)
+        ├── landing.js
+        ├── questionnaire.js
+        ├── download.js
+        ├── login.js
+        ├── dashboard.js
+        └── admin.js
 ```
+
+**Convention** : chaque page HTML charge ses dépendances dans cet ordre :
+1. Le SDK Supabase via CDN (si la page en a besoin)
+2. Les libs partagées (`js/lib/...`)
+3. Le script de la page (`js/pages/...`)
 
 ## Schéma de base de données
 

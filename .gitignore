@@ -1,0 +1,20 @@
+# Dossier Claude Code (local)
+.claude/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Env / secrets éventuels
+.env
+.env.local
