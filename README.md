@@ -84,15 +84,14 @@ Utilise toujours un serveur local.
 
 ```
 spotter/
-├── index.html              # Landing (sélection vertical)
-├── questionnaire.html      # Questionnaire → INSERT client
-├── download.html           # Création mot de passe + téléchargement
-├── login.html              # Connexion client existant
-├── dashboard.html          # Dashboard client (données Supabase)
-├── admin.html              # Espace admin (CRUD répétitions)
+├── index.html              # SEULE page à la racine : la landing
 │
-├── supabase-schema.sql     # SQL à exécuter dans Supabase (1 fois)
-├── _redirects              # Aliases Netlify (/comptable, /recrutement)
+├── pages/                  # Toutes les autres pages
+│   ├── questionnaire.html
+│   ├── download.html
+│   ├── login.html
+│   ├── dashboard.html
+│   └── admin.html
 │
 ├── css/                    # 1 fichier par page + global.css
 │   ├── global.css
@@ -103,26 +102,40 @@ spotter/
 │   ├── dashboard.css
 │   └── admin.css
 │
-└── js/
-    ├── lib/                # Code partagé entre plusieurs pages
-    │   ├── supabase-config.js   # ⚠️ Credentials Supabase (à configurer)
-    │   ├── supabase-client.js   # Wrapper Supabase (auth, queries)
-    │   ├── utils.js             # Storage, IP, validation email
-    │   └── verticals.js         # Définition des verticaux + questionnaires
-    │
-    └── pages/              # 1 fichier = 1 page (logique spécifique)
-        ├── landing.js
-        ├── questionnaire.js
-        ├── download.js
-        ├── login.js
-        ├── dashboard.js
-        └── admin.js
+├── js/
+│   ├── lib/                # Code partagé entre plusieurs pages
+│   │   ├── supabase-config.js   # ⚠️ Credentials Supabase (à configurer)
+│   │   ├── supabase-client.js   # Wrapper Supabase (auth, queries)
+│   │   ├── utils.js             # Storage, IP, validation email
+│   │   └── verticals.js         # Définition des verticaux + questionnaires
+│   │
+│   └── pages/              # 1 fichier = 1 page (logique spécifique)
+│       ├── landing.js
+│       ├── questionnaire.js
+│       ├── download.js
+│       ├── login.js
+│       ├── dashboard.js
+│       └── admin.js
+│
+├── supabase-schema.sql     # SQL à exécuter dans Supabase (1 fois)
+├── _redirects              # Aliases Netlify (/login, /admin, /comptable...)
+└── README.md
 ```
 
-**Convention** : chaque page HTML charge ses dépendances dans cet ordre :
+**URLs propres en production (via `_redirects` Netlify)** :
+- `/login` → `/pages/login.html`
+- `/dashboard` → `/pages/dashboard.html`
+- `/admin` → `/pages/admin.html`
+- `/comptable` → `/pages/questionnaire.html?v=comptable`
+- `/recrutement` → `/pages/questionnaire.html?v=recrutement`
+
+**Convention** : tous les chemins (CSS, JS, navigation entre pages) sont **absolus**
+(commencent par `/`). Du coup, peu importe d'où on charge le fichier, les chemins restent valides.
+
+Chaque page HTML charge ses dépendances dans cet ordre :
 1. Le SDK Supabase via CDN (si la page en a besoin)
-2. Les libs partagées (`js/lib/...`)
-3. Le script de la page (`js/pages/...`)
+2. Les libs partagées (`/js/lib/...`)
+3. Le script de la page (`/js/pages/...`)
 
 ## Schéma de base de données
 

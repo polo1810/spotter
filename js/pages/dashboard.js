@@ -178,7 +178,7 @@ async function loadDashboard() {
   // 1) Auth check
   const session = await window.spotterDB.getSession();
   if (!session) {
-    window.location.href = 'login.html';
+    window.location.href = '/pages/login.html';
     return;
   }
 
@@ -186,7 +186,7 @@ async function loadDashboard() {
   const adminEmail = (window.SPOTTER_CONFIG && window.SPOTTER_CONFIG.ADMIN_EMAIL) || '';
   const userEmail  = session.user.email || '';
   if (adminEmail && userEmail.toLowerCase() === adminEmail.toLowerCase()) {
-    window.location.href = 'admin.html';
+    window.location.href = '/pages/admin.html';
     return;
   }
 
@@ -223,6 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('signOutBtn').addEventListener('click', async () => {
     if (window.spotterDB) await window.spotterDB.signOut();
-    window.location.href = 'login.html';
+    window.location.href = '/pages/login.html';
   });
 });

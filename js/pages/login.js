@@ -35,11 +35,11 @@ async function attemptLogin() {
   // Si c'est un compte admin → redirection vers admin.html
   const adminEmail = (window.SPOTTER_CONFIG && window.SPOTTER_CONFIG.ADMIN_EMAIL) || '';
   if (adminEmail && email.toLowerCase() === adminEmail.toLowerCase()) {
-    window.location.href = 'admin.html';
+    window.location.href = '/pages/admin.html';
     return;
   }
 
-  window.location.href = 'dashboard.html';
+  window.location.href = '/pages/dashboard.html';
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       const adminEmail = (window.SPOTTER_CONFIG && window.SPOTTER_CONFIG.ADMIN_EMAIL) || '';
       const userEmail  = (session.user && session.user.email) || '';
       if (adminEmail && userEmail.toLowerCase() === adminEmail.toLowerCase()) {
-        window.location.href = 'admin.html';
+        window.location.href = '/pages/admin.html';
       } else {
-        window.location.href = 'dashboard.html';
+        window.location.href = '/pages/dashboard.html';
       }
       return;
     }

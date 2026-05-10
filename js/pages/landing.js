@@ -8,7 +8,7 @@
   if (!grid || typeof VERTICALS !== 'object') return;
 
   const html = Object.entries(VERTICALS).map(([key, v]) => `
-    <a href="questionnaire.html?v=${key}" class="metier-card">
+    <a href="/pages/questionnaire.html?v=${key}" class="metier-card">
       <div class="metier-card-icon">${v.landingIcon || '⚡'}</div>
       <div class="metier-card-title">${v.landingTitle || v.label}</div>
       <div class="metier-card-desc">${v.landingDesc || ''}</div>

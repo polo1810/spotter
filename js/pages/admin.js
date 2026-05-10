@@ -28,7 +28,7 @@ async function checkAdminSession() {
   if (!session || !adminEmail || userEmail !== adminEmail) {
     // Pas connecté en admin → redirection login
     messageEl.textContent = 'Accès refusé. Redirection vers la page de connexion...';
-    setTimeout(() => { window.location.href = 'login.html'; }, 800);
+    setTimeout(() => { window.location.href = '/pages/login.html'; }, 800);
     return;
   }
 
@@ -394,6 +394,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('adminSignOutBtn').addEventListener('click', async () => {
     if (window.spotterDB) await window.spotterDB.signOut();
-    window.location.href = 'login.html';
+    window.location.href = '/pages/login.html';
   });
 });

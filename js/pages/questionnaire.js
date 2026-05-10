@@ -8,7 +8,7 @@ const verticalKey = params.get('v');
 
 // Si aucune verticale valide n'est fournie, on renvoie vers le sélecteur métier
 if (!verticalKey || !VERTICALS[verticalKey]) {
-  window.location.href = 'index.html#metiers';
+  window.location.href = '/#metiers';
   throw new Error('Vertical manquante — redirection vers la landing');
 }
 
@@ -251,7 +251,7 @@ function startConfigureAnimation() {
   });
 
   setTimeout(() => {
-    goTo('download.html');
+    goTo('/pages/download.html');
   }, steps.length * stepDelay + 500);
 }
 

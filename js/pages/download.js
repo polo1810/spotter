@@ -206,7 +206,7 @@ function closeInstallModal() {
 document.addEventListener('DOMContentLoaded', async () => {
   const answers = SpotterStorage.getAnswers();
   if (!answers) {
-    goTo('questionnaire.html');
+    goTo('/pages/questionnaire.html');
     return;
   }
 
