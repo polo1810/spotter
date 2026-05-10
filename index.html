@@ -273,6 +273,52 @@
       margin-bottom: 12px;
     }
 
+    .m-action-row {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-bottom: 8px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .m-action-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .m-action-freq {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .m-action-freq-sub {
+      font-size: 11px;
+      color: var(--text-3);
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .m-action-time {
+      background: #fde4e4;
+      color: var(--red);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
     .m-auto {
       background: var(--white);
       border: 1px solid var(--border);
@@ -391,6 +437,62 @@
       max-width: 880px;
       margin: 0 auto;
     }
+
+    /* Barre de recherche métiers */
+    .metiers-search-wrap {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+
+    .metiers-search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .metiers-search-input {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px 14px 46px;
+      font-size: 15px;
+      font-family: var(--font);
+      color: var(--text);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .metiers-search-input::placeholder { color: var(--text-3); }
+
+    .metiers-search-input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+
+    .metiers-no-results {
+      text-align: center;
+      max-width: 540px;
+      margin: 32px auto 0;
+      font-size: 15px;
+      color: var(--text-2);
+      padding: 24px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+    }
+
+    .metiers-no-results a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .metiers-no-results a:hover { text-decoration: underline; }
 
     .metier-card {
       background: var(--white);
@@ -741,6 +843,8 @@
       .m-stat-val { font-size: 26px; }
       .m-auto { flex-direction: column; align-items: stretch; gap: 12px; }
       .m-auto-right { flex-direction: row; justify-content: space-between; align-items: center; }
+      .m-action-row { grid-template-columns: 1fr auto; gap: 8px; }
+      .m-action-row .m-action-name { grid-column: 1 / -1; white-space: normal; }
 
       .metiers { padding: 64px 0; }
       .metiers-header { margin-bottom: 32px; }
@@ -852,7 +956,25 @@
           </div>
         </div>
 
-        <div class="m-label">⚡ Automatisations prêtes à activer</div>
+        <div class="m-label">📊 Top des actions répétitives détectées</div>
+
+        <div class="m-action-row">
+          <div class="m-action-name">Saisies récurrentes corrigées à la main</div>
+          <div class="m-action-freq">87×<span class="m-action-freq-sub">/ sem</span></div>
+          <div class="m-action-time">2h45</div>
+        </div>
+        <div class="m-action-row">
+          <div class="m-action-name">Réponses identiques par mail aux clients</div>
+          <div class="m-action-freq">52×<span class="m-action-freq-sub">/ sem</span></div>
+          <div class="m-action-time">2h15</div>
+        </div>
+        <div class="m-action-row">
+          <div class="m-action-name">Retraitement Excel pour reportings</div>
+          <div class="m-action-freq">12×<span class="m-action-freq-sub">/ sem</span></div>
+          <div class="m-action-time">1h50</div>
+        </div>
+
+        <div class="m-label" style="margin-top: 24px;">⚡ Automatisations prêtes à activer</div>
 
         <div class="m-auto">
           <div class="m-auto-left">
@@ -899,8 +1021,27 @@
       </p>
     </div>
 
+    <!-- Barre de recherche -->
+    <div class="metiers-search-wrap">
+      <span class="metiers-search-icon">🔍</span>
+      <input
+        type="text"
+        id="metiersSearch"
+        class="metiers-search-input"
+        placeholder="Trouve ton métier (avocat, immobilier, marketing...)"
+        autocomplete="off"
+      >
+    </div>
+
     <!-- Les cartes métiers sont injectées par js/landing.js depuis verticals.js -->
     <div class="metiers-grid" id="metiersGrid"></div>
+
+    <!-- Message si aucun résultat à la recherche -->
+    <div id="metiersNoResults" class="metiers-no-results" style="display:none;">
+      Aucun métier trouvé pour cette recherche.
+      <a href="mailto:contact@spotter.app?subject=Mon métier n'est pas dans la liste">Dis-le-nous</a>,
+      on l'ajoutera.
+    </div>
 
     <p class="metiers-other">
       Ton métier n'est pas dans la liste ?

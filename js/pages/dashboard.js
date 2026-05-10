@@ -181,6 +181,204 @@ const PREVIEW_DATA = {
         effort: "0 ligne de code · 4 minutes"
       }
     ]
+  },
+
+  avocat: {
+    repetitions: [
+      { libelle: "Recherches de jurisprudence répétitives",      description: "Mêmes requêtes Doctrine / Lexis lancées plusieurs fois par semaine",         frequence: 28, frequence_unit: 'semaine', temps_perdu_minutes: 130, statut: 'automatable' },
+      { libelle: "Rédaction d'actes-types répétés",              description: "Mêmes mises en demeure / contrats / conclusions adaptés à la marge",         frequence: 18, frequence_unit: 'semaine', temps_perdu_minutes: 180, statut: 'automatable' },
+      { libelle: "Suivi facturation au temps passé",             description: "Saisie manuelle des temps dans Excel + relances clients",                    frequence: 40, frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'detected' },
+      { libelle: "Réponses récurrentes aux clients",             description: "Mêmes formulations envoyées plusieurs fois par mail aux clients",            frequence: 35, frequence_unit: 'semaine', temps_perdu_minutes: 75,  statut: 'detected' },
+      { libelle: "Vérifications de pièces de dossier",           description: "Pointage manuel des documents reçus / manquants par dossier",                 frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 60,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Bibliothèque d'actes-types pré-personnalisés",
+        desc:  "Vos modèles d'actes les plus utilisés (mises en demeure, contrats, conclusions) auto-complétés avec les données du dossier en un clic.",
+        gain:  "+2h30/sem",
+        tools: ["Word"],
+        effort: "0 ligne de code · 3 minutes"
+      },
+      {
+        title: "Suivi facturation horaire automatisé",
+        desc:  "Détection automatique du temps passé sur chaque dossier (mails, documents) et compilation pour facturation mensuelle.",
+        gain:  "+1h45/sem",
+        tools: ["Outlook", "Excel"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Templates de réponses mail intelligents",
+        desc:  "Les formulations qui reviennent dans 80% de vos mails clients transformées en raccourcis Outlook.",
+        gain:  "+1h15/sem",
+        tools: ["Outlook"],
+        effort: "0 ligne de code · 1 minute"
+      }
+    ]
+  },
+
+  immobilier: {
+    repetitions: [
+      { libelle: "Mise à jour des annonces multi-portails",       description: "Modifications manuelles sur SeLoger, Leboncoin, etc. après chaque update Hektor", frequence: 22, frequence_unit: 'semaine', temps_perdu_minutes: 110, statut: 'automatable' },
+      { libelle: "Relances clients après visite",                description: "Même mail/SMS envoyé après chaque visite pour récolter le retour",            frequence: 45, frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'detected' },
+      { libelle: "Comptes-rendus de visite",                     description: "Rédaction manuelle des observations + envoi au propriétaire",                 frequence: 30, frequence_unit: 'semaine', temps_perdu_minutes: 75,  statut: 'automatable' },
+      { libelle: "Édition de mandats de vente / location",       description: "Recopie des informations propriétaire / bien dans le contrat",                frequence: 6,  frequence_unit: 'semaine', temps_perdu_minutes: 60,  statut: 'detected' },
+      { libelle: "Reporting hebdo aux propriétaires",            description: "Point sur les visites + retours sur leurs biens",                              frequence: 18, frequence_unit: 'semaine', temps_perdu_minutes: 45,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Sync multi-portails automatique",
+        desc:  "Mise à jour Hektor → propagation auto sur SeLoger, Leboncoin Pro, votre site, sans toucher à chaque portail à la main.",
+        gain:  "+2h15/sem",
+        tools: ["Hektor", "SeLoger", "Leboncoin"],
+        effort: "0 ligne de code · 3 minutes"
+      },
+      {
+        title: "Relance post-visite automatisée",
+        desc:  "Après chaque visite, envoi automatique d'un mail/SMS personnalisé pour récupérer le feedback du visiteur.",
+        gain:  "+1h30/sem",
+        tools: ["Outlook", "WhatsApp"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Reporting propriétaires en 1 clic",
+        desc:  "Génération auto d'un rapport hebdomadaire par bien (visites, retours, contacts) envoyé directement au propriétaire.",
+        gain:  "+1h00/sem",
+        tools: ["Hektor", "Outlook"],
+        effort: "0 ligne de code · 2 minutes"
+      }
+    ]
+  },
+
+  architecte: {
+    repetitions: [
+      { libelle: "Comptes-rendus de chantier hebdomadaires",     description: "Mise en forme + photos + envoi à toutes les parties prenantes",                frequence: 6,  frequence_unit: 'semaine', temps_perdu_minutes: 165, statut: 'automatable' },
+      { libelle: "Mise à jour de plans après réunion",           description: "Reprise manuelle des annotations dans AutoCAD / Revit",                       frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 130, statut: 'detected' },
+      { libelle: "Demandes de pièces aux entreprises",           description: "Relances mail récurrentes pour récupérer DOE, attestations, devis...",        frequence: 25, frequence_unit: 'semaine', temps_perdu_minutes: 75,  statut: 'automatable' },
+      { libelle: "Préparation dossiers permis de construire",    description: "Compilation manuelle des pièces standards (notice, plans, formulaires)",      frequence: 3,  frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'detected' },
+      { libelle: "Nomenclatures et bordereaux récurrents",       description: "Recopie de quantitatifs entre logiciels / Excel",                              frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 50,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Comptes-rendus de chantier auto-générés",
+        desc:  "Saisie sur tablette pendant la visite → génération auto du CR avec photos, mise en page, envoi à la liste de diffusion.",
+        gain:  "+2h45/sem",
+        tools: ["Word", "Outlook"],
+        effort: "0 ligne de code · 4 minutes"
+      },
+      {
+        title: "Relances pièces automatiques par dossier",
+        desc:  "Suivi automatique des pièces attendues par entreprise + relance par mail à J+7 si manquantes.",
+        gain:  "+1h15/sem",
+        tools: ["Outlook", "Excel"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Templates dossier permis pré-remplis",
+        desc:  "Génération automatique des pièces administratives standards à partir des informations du projet (CERFA, notice, etc.).",
+        gain:  "+1h30/sem",
+        tools: ["Word"],
+        effort: "0 ligne de code · 3 minutes"
+      }
+    ]
+  },
+
+  conseil: {
+    repetitions: [
+      { libelle: "Mise en forme de slides PowerPoint",           description: "Reprise du template cabinet / mise aux couleurs sur chaque livrable",          frequence: 18, frequence_unit: 'semaine', temps_perdu_minutes: 165, statut: 'automatable' },
+      { libelle: "Comptes-rendus de réunion clients",            description: "Rédaction manuelle des CR + envoi à la liste de diffusion",                    frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 110, statut: 'automatable' },
+      { libelle: "Dashboards Excel récurrents",                  description: "Recopie/retraitement de données pour les mêmes indicateurs chaque mois",       frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'detected' },
+      { libelle: "Propales clients",                             description: "Rédaction de propositions commerciales avec sections récurrentes",            frequence: 4,  frequence_unit: 'semaine', temps_perdu_minutes: 75,  statut: 'detected' },
+      { libelle: "Suivi hebdo des missions en cours",            description: "Compilation manuelle de l'avancement multi-missions pour le management",       frequence: 5,  frequence_unit: 'semaine', temps_perdu_minutes: 45,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Auto-mise en page slides au template cabinet",
+        desc:  "Glisser-déposer du contenu brut → application auto du template (couleurs, polices, footer, numérotation).",
+        gain:  "+2h30/sem",
+        tools: ["PowerPoint"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "CR de réunion automatisés",
+        desc:  "Transcription auto + structuration en CR formaté + envoi à la liste de diffusion en un clic.",
+        gain:  "+1h45/sem",
+        tools: ["Outlook", "Word"],
+        effort: "0 ligne de code · 3 minutes"
+      },
+      {
+        title: "Bibliothèque de propales modulaires",
+        desc:  "Sections-types pré-rédigées (méthodologie, équipe, planning) à assembler en quelques clics selon le client.",
+        gain:  "+1h15/sem",
+        tools: ["Word", "PowerPoint"],
+        effort: "0 ligne de code · 3 minutes"
+      }
+    ]
+  },
+
+  marketing: {
+    repetitions: [
+      { libelle: "Reportings clients récurrents",                description: "Export Google Ads + Meta + GA4 → mise en forme dans le template agence",       frequence: 22, frequence_unit: 'semaine', temps_perdu_minutes: 180, statut: 'automatable' },
+      { libelle: "Paramétrage de campagnes similaires",          description: "Copie de structures Google/Meta Ads avec ajustements à la marge",              frequence: 14, frequence_unit: 'semaine', temps_perdu_minutes: 120, statut: 'detected' },
+      { libelle: "Posts récurrents sur réseaux sociaux",         description: "Adaptation des mêmes formats (carrousels, posts) sur 3-4 plateformes",          frequence: 30, frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'automatable' },
+      { libelle: "Briefings créatifs",                           description: "Rédaction des briefs DA avec mêmes sections par projet",                       frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 60,  statut: 'detected' },
+      { libelle: "Suivi mensuel des KPI multi-clients",          description: "Compilation manuelle de la performance globale pour le management",            frequence: 1,  frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Reportings multi-plateformes auto-générés",
+        desc:  "Connexion Google Ads + Meta + GA4 → reporting client formaté envoyé automatiquement chaque lundi.",
+        gain:  "+3h00/sem",
+        tools: ["Google Ads", "Meta Ads", "Google Analytics"],
+        effort: "0 ligne de code · 4 minutes"
+      },
+      {
+        title: "Cross-posting réseaux sociaux automatisé",
+        desc:  "Un post → adaptation auto du format pour LinkedIn + Insta + Facebook + publication programmée.",
+        gain:  "+1h30/sem",
+        tools: ["LinkedIn", "Meta", "Canva"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Templates briefs créatifs intelligents",
+        desc:  "Génération auto du brief créa avec contexte client, objectifs, contraintes pré-remplis depuis votre CRM.",
+        gain:  "+1h00/sem",
+        tools: ["HubSpot", "Notion"],
+        effort: "0 ligne de code · 3 minutes"
+      }
+    ]
+  },
+
+  formation: {
+    repetitions: [
+      { libelle: "Conventions de formation à émettre",            description: "Recopie des données apprenant + entreprise dans le modèle de convention",      frequence: 18, frequence_unit: 'semaine', temps_perdu_minutes: 110, statut: 'automatable' },
+      { libelle: "Attestations de présence post-session",         description: "Génération + envoi individuel des attestations à chaque apprenant",            frequence: 35, frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'automatable' },
+      { libelle: "Relances apprenants entre les modules",         description: "Mêmes mails de motivation envoyés à chaque cohorte",                            frequence: 50, frequence_unit: 'semaine', temps_perdu_minutes: 75,  statut: 'detected' },
+      { libelle: "Préparation de supports avant chaque session",  description: "Reprise et mise à jour des supports PowerPoint à la marge",                    frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'detected' },
+      { libelle: "Relances OPCO / pièces de financement",         description: "Mails de suivi pour les financements en cours",                                 frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 50,  statut: 'automated' },
+    ],
+    autos: [
+      {
+        title: "Génération auto conventions + attestations",
+        desc:  "À l'inscription d'un apprenant → convention pré-remplie. À la fin de session → attestation auto envoyée. Plus besoin de copier-coller.",
+        gain:  "+2h30/sem",
+        tools: ["Digiforma", "Outlook"],
+        effort: "0 ligne de code · 3 minutes"
+      },
+      {
+        title: "Séquences de relance apprenants",
+        desc:  "Vos mails de motivation et rappels programmés automatiquement entre chaque module, par cohorte.",
+        gain:  "+1h30/sem",
+        tools: ["Outlook"],
+        effort: "0 ligne de code · 2 minutes"
+      },
+      {
+        title: "Bibliothèque de supports modulaires",
+        desc:  "Sections-types à assembler en quelques clics pour préparer un nouveau support sans repartir de zéro.",
+        gain:  "+1h15/sem",
+        tools: ["PowerPoint"],
+        effort: "0 ligne de code · 3 minutes"
+      }
+    ]
   }
 };
 

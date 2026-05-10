@@ -2,8 +2,14 @@
 # Format : /url-propre   /page-cible   code-HTTP
 
 # Aliases vers le questionnaire avec vertical pré-sélectionné
-/recrutement    /pages/questionnaire.html?v=recrutement    200
 /comptable      /pages/questionnaire.html?v=comptable      200
+/recrutement    /pages/questionnaire.html?v=recrutement    200
+/avocat         /pages/questionnaire.html?v=avocat         200
+/immobilier     /pages/questionnaire.html?v=immobilier     200
+/architecte     /pages/questionnaire.html?v=architecte     200
+/conseil        /pages/questionnaire.html?v=conseil        200
+/marketing      /pages/questionnaire.html?v=marketing      200
+/formation      /pages/questionnaire.html?v=formation      200
 
 # Aliases courts vers les pages internes (URLs propres pour les utilisateurs)
 /login          /pages/login.html       200

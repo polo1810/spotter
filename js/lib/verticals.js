@@ -233,6 +233,639 @@ const VERTICALS = {
         placeholder: 'vous@cabinet.fr'
       }
     ]
+  },
+
+  // ===========================================
+  // CABINET D'AVOCATS
+  // ===========================================
+  avocat: {
+    label: 'Cabinet d\'avocats',
+    chip: 'Pour cabinets d\'avocats',
+    title: 'Quelques questions pour personnaliser votre app',
+    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité juridique.',
+    landingIcon: '⚖️',
+    landingTitle: 'Avocat',
+    landingDesc: 'Doctrine, Lexis, Dalloz, gestion de dossiers, rédaction d\'actes, facturation aux temps...',
+    questions: [
+      {
+        id: 'tools', type: 'multi',
+        question: 'Quels outils utilisez-vous au quotidien ?',
+        helper: 'Sélectionnez tout ce qui s\'applique.',
+        options: [
+          { value: 'doctrine',  label: 'Doctrine' },
+          { value: 'lexis',     label: 'Lexis 360 / Lexbase' },
+          { value: 'dalloz',    label: 'Dalloz' },
+          { value: 'rpva',      label: 'RPVA / e-Barreau' },
+          { value: 'outlook',   label: 'Outlook / Gmail' },
+          { value: 'word',      label: 'Word / Google Docs' },
+          { value: 'excel',     label: 'Excel' },
+          { value: 'autre',     label: 'Autre' },
+        ]
+      },
+      {
+        id: 'role', type: 'radio',
+        question: 'Quel est votre rôle dans le cabinet ?',
+        options: [
+          { value: 'associe',    label: 'Avocat associé' },
+          { value: 'collab',     label: 'Avocat collaborateur' },
+          { value: 'juriste',    label: 'Juriste' },
+          { value: 'assistant',  label: 'Assistant(e) juridique' },
+          { value: 'autre',      label: 'Autre' },
+        ]
+      },
+      {
+        id: 'size', type: 'radio',
+        question: 'Combien êtes-vous dans le cabinet ?',
+        options: [
+          { value: 'solo',  label: 'Tout seul' },
+          { value: '1-3',   label: '1 à 3 personnes' },
+          { value: '4-10',  label: '4 à 10 personnes' },
+          { value: '11-30', label: '11 à 30 personnes' },
+          { value: '30+',   label: 'Plus de 30 personnes' },
+        ]
+      },
+      {
+        id: 'specialite', type: 'radio',
+        question: 'Quelle est votre spécialité principale ?',
+        options: [
+          { value: 'affaires', label: 'Droit des affaires' },
+          { value: 'social',   label: 'Droit social' },
+          { value: 'immo',     label: 'Droit immobilier' },
+          { value: 'famille',  label: 'Droit de la famille' },
+          { value: 'fiscal',   label: 'Droit fiscal' },
+          { value: 'penal',    label: 'Droit pénal' },
+          { value: 'mix',      label: 'Plusieurs spécialités' },
+        ]
+      },
+      {
+        id: 'clients', type: 'radio',
+        question: 'Quel type de clientèle traitez-vous principalement ?',
+        options: [
+          { value: 'entreprises', label: 'Surtout des entreprises' },
+          { value: 'particuliers',label: 'Surtout des particuliers' },
+          { value: 'mix',         label: 'Un mix des deux' },
+          { value: 'institutions',label: 'Institutionnels / collectivités' },
+        ]
+      },
+      {
+        id: 'facturation', type: 'radio',
+        question: 'Comment vous facturez la majorité de vos missions ?',
+        options: [
+          { value: 'forfait', label: 'Au forfait' },
+          { value: 'horaire', label: 'Au temps passé (taux horaire)' },
+          { value: 'mensuel', label: 'Abonnement mensuel' },
+          { value: 'mix',     label: 'Un mix selon les dossiers' },
+        ]
+      },
+      {
+        id: 'habits', type: 'radio',
+        question: 'Y a-t-il des tâches que vous faites toutes les semaines sans vraiment les remettre en question ?',
+        helper: 'Rédactions répétées, suivis de courriers, recherches de jurisprudence...',
+        options: [
+          { value: 'oui-clair', label: 'Oui, très clairement' },
+          { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },
+          { value: 'non',       label: 'Non, je vois pas trop' },
+        ]
+      },
+      {
+        id: 'auto', type: 'radio',
+        question: 'Vous avez déjà essayé d\'automatiser des choses dans votre quotidien ?',
+        options: [
+          { value: 'oui-bcp',   label: 'Oui, on a mis pas mal de trucs en place' },
+          { value: 'oui-peu',   label: 'Quelques essais, mais rien de structuré' },
+          { value: 'non-envie', label: 'Non, mais on aimerait s\'y mettre' },
+          { value: 'non-temps', label: 'Non, on a jamais eu le temps' },
+        ]
+      },
+      {
+        id: 'hours', type: 'slider',
+        question: 'Combien d\'heures par semaine vous estimez perdre sur des tâches répétitives ?',
+        helper: 'À la louche. Ça nous aide à calibrer les seuils de détection.',
+        min: 0, max: 15, step: 1, defaultValue: 5,
+        formatValue: v => parseInt(v) >= 15 ? '15h+' : v + 'h'
+      },
+      {
+        id: 'email', type: 'email',
+        question: 'Quel email pour votre compte Spotter ?',
+        helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
+        placeholder: 'vous@cabinet.fr'
+      }
+    ]
+  },
+
+  // ===========================================
+  // AGENCE IMMOBILIÈRE
+  // ===========================================
+  immobilier: {
+    label: 'Agence immobilière',
+    chip: 'Pour agences immobilières',
+    title: 'Quelques questions pour personnaliser votre app',
+    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité immobilière.',
+    landingIcon: '🏠',
+    landingTitle: 'Agence immobilière',
+    landingDesc: 'Hektor, Apimo, gestion mandats, suivi visites, relances clients, photos d\'annonces...',
+    questions: [
+      {
+        id: 'tools', type: 'multi',
+        question: 'Quels outils utilisez-vous au quotidien ?',
+        options: [
+          { value: 'hektor',     label: 'Hektor' },
+          { value: 'apimo',      label: 'Apimo' },
+          { value: 'jestimo',    label: 'Jestimo' },
+          { value: 'imobble',    label: 'Imobble' },
+          { value: 'leboncoin',  label: 'Leboncoin Pro' },
+          { value: 'seloger',    label: 'SeLoger' },
+          { value: 'outlook',    label: 'Outlook / Gmail' },
+          { value: 'whatsapp',   label: 'WhatsApp Business' },
+          { value: 'autre',      label: 'Autre' },
+        ]
+      },
+      {
+        id: 'role', type: 'radio',
+        question: 'Quel est votre rôle dans l\'agence ?',
+        options: [
+          { value: 'gerant',       label: 'Gérant(e) / Dirigeant(e)' },
+          { value: 'commercial',   label: 'Conseiller / Négociateur' },
+          { value: 'assistant',    label: 'Assistant(e) commercial(e)' },
+          { value: 'gestion',      label: 'Gestionnaire de biens' },
+          { value: 'autre',        label: 'Autre' },
+        ]
+      },
+      {
+        id: 'size', type: 'radio',
+        question: 'Combien êtes-vous dans l\'agence ?',
+        options: [
+          { value: 'solo',  label: 'Tout seul' },
+          { value: '1-3',   label: '1 à 3 personnes' },
+          { value: '4-10',  label: '4 à 10 personnes' },
+          { value: '11-30', label: '11 à 30 personnes' },
+          { value: '30+',   label: 'Plus de 30 personnes' },
+        ]
+      },
+      {
+        id: 'specialite', type: 'radio',
+        question: 'Sur quel segment êtes-vous principalement positionné ?',
+        options: [
+          { value: 'residentiel-vente',     label: 'Résidentiel - vente' },
+          { value: 'residentiel-location',  label: 'Résidentiel - location' },
+          { value: 'gestion-locative',      label: 'Gestion locative' },
+          { value: 'commercial',            label: 'Immobilier commercial / professionnel' },
+          { value: 'neuf',                  label: 'Programmes neufs' },
+          { value: 'mix',                   label: 'Plusieurs segments' },
+        ]
+      },
+      {
+        id: 'mandats', type: 'radio',
+        question: 'Combien de mandats actifs gérez-vous en moyenne ?',
+        options: [
+          { value: '1-10',  label: 'Moins de 10' },
+          { value: '11-30', label: '11 à 30' },
+          { value: '31-80', label: '31 à 80' },
+          { value: '80+',   label: 'Plus de 80' },
+        ]
+      },
+      {
+        id: 'comm', type: 'radio',
+        question: 'Comment vous communiquez principalement avec vos clients ?',
+        options: [
+          { value: 'mail',     label: 'Surtout par mail' },
+          { value: 'tel',      label: 'Surtout par téléphone' },
+          { value: 'whatsapp', label: 'Beaucoup de WhatsApp/SMS' },
+          { value: 'mix',      label: 'Un mix des trois' },
+        ]
+      },
+      {
+        id: 'habits', type: 'radio',
+        question: 'Y a-t-il des tâches que vous faites toutes les semaines sans y penser ?',
+        helper: 'Relances, mises à jour d\'annonces, comptes-rendus de visite...',
+        options: [
+          { value: 'oui-clair', label: 'Oui, très clairement' },
+          { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },
+          { value: 'non',       label: 'Non, je vois pas trop' },
+        ]
+      },
+      {
+        id: 'hours', type: 'slider',
+        question: 'Combien d\'heures par semaine vous estimez perdre sur des tâches répétitives ?',
+        helper: 'À la louche. Ça nous aide à calibrer les seuils de détection.',
+        min: 0, max: 15, step: 1, defaultValue: 5,
+        formatValue: v => parseInt(v) >= 15 ? '15h+' : v + 'h'
+      },
+      {
+        id: 'email', type: 'email',
+        question: 'Quel email pour votre compte Spotter ?',
+        helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
+        placeholder: 'vous@agence.fr'
+      }
+    ]
+  },
+
+  // ===========================================
+  // CABINET D'ARCHITECTES
+  // ===========================================
+  architecte: {
+    label: 'Cabinet d\'architectes',
+    chip: 'Pour cabinets d\'architectes',
+    title: 'Quelques questions pour personnaliser votre app',
+    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité.',
+    landingIcon: '📐',
+    landingTitle: 'Architecte',
+    landingDesc: 'AutoCAD, Revit, ArchiCAD, suivi de chantier, dossiers permis, comptes-rendus de visite...',
+    questions: [
+      {
+        id: 'tools', type: 'multi',
+        question: 'Quels logiciels utilisez-vous principalement ?',
+        options: [
+          { value: 'autocad',   label: 'AutoCAD' },
+          { value: 'revit',     label: 'Revit / BIM' },
+          { value: 'archicad',  label: 'ArchiCAD' },
+          { value: 'sketchup',  label: 'SketchUp' },
+          { value: 'allplan',   label: 'Allplan' },
+          { value: 'outlook',   label: 'Outlook / Gmail' },
+          { value: 'excel',     label: 'Excel' },
+          { value: 'autre',     label: 'Autre' },
+        ]
+      },
+      {
+        id: 'role', type: 'radio',
+        question: 'Quel est votre rôle dans le cabinet ?',
+        options: [
+          { value: 'associe',     label: 'Architecte associé / dirigeant' },
+          { value: 'salarie',     label: 'Architecte salarié' },
+          { value: 'dessinateur', label: 'Dessinateur / Projeteur' },
+          { value: 'travaux',     label: 'Conducteur de travaux' },
+          { value: 'assistant',   label: 'Assistant(e) administratif(ve)' },
+          { value: 'autre',       label: 'Autre' },
+        ]
+      },
+      {
+        id: 'size', type: 'radio',
+        question: 'Combien êtes-vous dans le cabinet ?',
+        options: [
+          { value: 'solo',  label: 'Tout seul' },
+          { value: '1-3',   label: '1 à 3 personnes' },
+          { value: '4-10',  label: '4 à 10 personnes' },
+          { value: '11-30', label: '11 à 30 personnes' },
+          { value: '30+',   label: 'Plus de 30 personnes' },
+        ]
+      },
+      {
+        id: 'projets', type: 'radio',
+        question: 'Sur quel type de projets travaillez-vous principalement ?',
+        options: [
+          { value: 'residentiel', label: 'Résidentiel (maisons, immeubles)' },
+          { value: 'tertiaire',   label: 'Tertiaire / bureaux' },
+          { value: 'public',      label: 'Équipements publics' },
+          { value: 'reno',        label: 'Rénovation / réhabilitation' },
+          { value: 'mix',         label: 'Plusieurs typologies' },
+        ]
+      },
+      {
+        id: 'phase', type: 'radio',
+        question: 'Sur quelle phase passez-vous le plus de temps ?',
+        options: [
+          { value: 'esquisse',  label: 'Esquisse / APS' },
+          { value: 'apd',       label: 'APD / DCE' },
+          { value: 'execution', label: 'Exécution / DET' },
+          { value: 'chantier',  label: 'Suivi de chantier' },
+          { value: 'mix',       label: 'Un peu de tout selon les projets' },
+        ]
+      },
+      {
+        id: 'habits', type: 'radio',
+        question: 'Y a-t-il des tâches que vous faites toutes les semaines sans vraiment y penser ?',
+        helper: 'Comptes-rendus de chantier, mises à jour de plans, demandes de pièces...',
+        options: [
+          { value: 'oui-clair', label: 'Oui, très clairement' },
+          { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },
+          { value: 'non',       label: 'Non, je vois pas trop' },
+        ]
+      },
+      {
+        id: 'hours', type: 'slider',
+        question: 'Combien d\'heures par semaine vous estimez perdre sur des tâches répétitives ?',
+        helper: 'À la louche. Ça nous aide à calibrer les seuils de détection.',
+        min: 0, max: 15, step: 1, defaultValue: 5,
+        formatValue: v => parseInt(v) >= 15 ? '15h+' : v + 'h'
+      },
+      {
+        id: 'email', type: 'email',
+        question: 'Quel email pour votre compte Spotter ?',
+        helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
+        placeholder: 'vous@cabinet.fr'
+      }
+    ]
+  },
+
+  // ===========================================
+  // CABINET DE CONSEIL / CONSULTANTS
+  // ===========================================
+  conseil: {
+    label: 'Cabinet de conseil',
+    chip: 'Pour cabinets de conseil',
+    title: 'Quelques questions pour personnaliser votre app',
+    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité de conseil.',
+    landingIcon: '💼',
+    landingTitle: 'Conseil & Consultants',
+    landingDesc: 'PowerPoint, Excel, Notion, livrables clients, comptes-rendus de mission, propales...',
+    questions: [
+      {
+        id: 'tools', type: 'multi',
+        question: 'Quels outils utilisez-vous au quotidien ?',
+        options: [
+          { value: 'powerpoint',label: 'PowerPoint / Google Slides' },
+          { value: 'excel',     label: 'Excel / Google Sheets' },
+          { value: 'notion',    label: 'Notion' },
+          { value: 'slack',     label: 'Slack / Teams' },
+          { value: 'outlook',   label: 'Outlook / Gmail' },
+          { value: 'hubspot',   label: 'HubSpot / Salesforce' },
+          { value: 'trello',    label: 'Trello / Asana / Monday' },
+          { value: 'autre',     label: 'Autre' },
+        ]
+      },
+      {
+        id: 'role', type: 'radio',
+        question: 'Quel est votre rôle ?',
+        options: [
+          { value: 'associe',   label: 'Associé(e) / Dirigeant(e)' },
+          { value: 'manager',   label: 'Manager / Directeur de mission' },
+          { value: 'senior',    label: 'Consultant(e) senior' },
+          { value: 'junior',    label: 'Consultant(e) junior' },
+          { value: 'solo',      label: 'Consultant(e) indépendant(e)' },
+          { value: 'autre',     label: 'Autre' },
+        ]
+      },
+      {
+        id: 'size', type: 'radio',
+        question: 'Combien êtes-vous dans la structure ?',
+        options: [
+          { value: 'solo',  label: 'Tout seul' },
+          { value: '1-3',   label: '1 à 3 personnes' },
+          { value: '4-10',  label: '4 à 10 personnes' },
+          { value: '11-30', label: '11 à 30 personnes' },
+          { value: '30+',   label: 'Plus de 30 personnes' },
+        ]
+      },
+      {
+        id: 'specialite', type: 'radio',
+        question: 'Quelle est votre spécialité principale ?',
+        options: [
+          { value: 'strategie',     label: 'Stratégie' },
+          { value: 'organisation',  label: 'Organisation / Transformation' },
+          { value: 'rh',            label: 'RH / Management' },
+          { value: 'it',            label: 'IT / Digital' },
+          { value: 'finance',       label: 'Finance / Performance' },
+          { value: 'mix',           label: 'Plusieurs domaines' },
+        ]
+      },
+      {
+        id: 'clients', type: 'radio',
+        question: 'Quel type de clients gérez-vous principalement ?',
+        options: [
+          { value: 'tpe',       label: 'TPE / startups' },
+          { value: 'pme',       label: 'PME' },
+          { value: 'eti',       label: 'ETI' },
+          { value: 'grands',    label: 'Grands comptes' },
+          { value: 'mix',       label: 'Un mix selon les missions' },
+        ]
+      },
+      {
+        id: 'habits', type: 'radio',
+        question: 'Y a-t-il des tâches récurrentes que vous refaites de mission en mission ?',
+        helper: 'Mise en forme de slides, comptes-rendus, dashboards Excel...',
+        options: [
+          { value: 'oui-clair', label: 'Oui, très clairement' },
+          { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },
+          { value: 'non',       label: 'Non, je vois pas trop' },
+        ]
+      },
+      {
+        id: 'hours', type: 'slider',
+        question: 'Combien d\'heures par semaine vous estimez perdre sur des tâches répétitives ?',
+        helper: 'À la louche. Ça nous aide à calibrer les seuils de détection.',
+        min: 0, max: 15, step: 1, defaultValue: 5,
+        formatValue: v => parseInt(v) >= 15 ? '15h+' : v + 'h'
+      },
+      {
+        id: 'email', type: 'email',
+        question: 'Quel email pour votre compte Spotter ?',
+        helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
+        placeholder: 'vous@cabinet.fr'
+      }
+    ]
+  },
+
+  // ===========================================
+  // AGENCE MARKETING / COMMUNICATION
+  // ===========================================
+  marketing: {
+    label: 'Agence marketing & communication',
+    chip: 'Pour agences marketing',
+    title: 'Quelques questions pour personnaliser votre app',
+    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité marketing.',
+    landingIcon: '📣',
+    landingTitle: 'Marketing & Com',
+    landingDesc: 'HubSpot, Mailchimp, Google Ads, LinkedIn, reportings clients, suivis de campagne...',
+    questions: [
+      {
+        id: 'tools', type: 'multi',
+        question: 'Quels outils utilisez-vous au quotidien ?',
+        options: [
+          { value: 'hubspot',     label: 'HubSpot' },
+          { value: 'mailchimp',   label: 'Mailchimp / Brevo' },
+          { value: 'gads',        label: 'Google Ads' },
+          { value: 'meta',        label: 'Meta Ads (Facebook/Instagram)' },
+          { value: 'linkedin',    label: 'LinkedIn (Sales Nav / Ads)' },
+          { value: 'analytics',   label: 'Google Analytics / GA4' },
+          { value: 'canva',       label: 'Canva / Adobe' },
+          { value: 'notion',      label: 'Notion / Asana' },
+          { value: 'autre',       label: 'Autre' },
+        ]
+      },
+      {
+        id: 'role', type: 'radio',
+        question: 'Quel est votre rôle dans l\'agence ?',
+        options: [
+          { value: 'dirigeant',  label: 'Dirigeant(e) / fondateur(rice)' },
+          { value: 'account',    label: 'Account manager / chef de projet' },
+          { value: 'creative',   label: 'Créa / DA / Rédacteur' },
+          { value: 'traffic',    label: 'Traffic manager / SEA / SEO' },
+          { value: 'social',     label: 'Social media manager' },
+          { value: 'autre',      label: 'Autre' },
+        ]
+      },
+      {
+        id: 'size', type: 'radio',
+        question: 'Combien êtes-vous dans l\'agence ?',
+        options: [
+          { value: 'solo',  label: 'Tout seul' },
+          { value: '1-3',   label: '1 à 3 personnes' },
+          { value: '4-10',  label: '4 à 10 personnes' },
+          { value: '11-30', label: '11 à 30 personnes' },
+          { value: '30+',   label: 'Plus de 30 personnes' },
+        ]
+      },
+      {
+        id: 'offre', type: 'radio',
+        question: 'Quelle est votre offre principale ?',
+        options: [
+          { value: 'paid',        label: 'Acquisition payante (SEA / Social Ads)' },
+          { value: 'content',     label: 'Content / SEO / Branding' },
+          { value: 'social',      label: 'Social media / Community management' },
+          { value: 'fullservice', label: 'Full service / 360°' },
+          { value: 'evt',         label: 'Événementiel / RP' },
+        ]
+      },
+      {
+        id: 'clients', type: 'radio',
+        question: 'Sur quels types de clients travaillez-vous principalement ?',
+        options: [
+          { value: 'b2b',  label: 'Surtout B2B' },
+          { value: 'b2c',  label: 'Surtout B2C' },
+          { value: 'mix',  label: 'Un mix B2B / B2C' },
+          { value: 'pubs', label: 'Institutions / collectivités' },
+        ]
+      },
+      {
+        id: 'reporting', type: 'radio',
+        question: 'À quelle fréquence vous faites des reportings clients ?',
+        options: [
+          { value: 'hebdo',    label: 'Hebdomadaire' },
+          { value: 'mensuel',  label: 'Mensuel' },
+          { value: 'trim',     label: 'Trimestriel' },
+          { value: 'demand',   label: 'À la demande' },
+        ]
+      },
+      {
+        id: 'habits', type: 'radio',
+        question: 'Y a-t-il des tâches que vous refaites de campagne en campagne ?',
+        helper: 'Reportings, paramétrage de campagnes, exports de KPI...',
+        options: [
+          { value: 'oui-clair', label: 'Oui, très clairement' },
+          { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },
+          { value: 'non',       label: 'Non, je vois pas trop' },
+        ]
+      },
+      {
+        id: 'hours', type: 'slider',
+        question: 'Combien d\'heures par semaine vous estimez perdre sur des tâches répétitives ?',
+        helper: 'À la louche. Ça nous aide à calibrer les seuils de détection.',
+        min: 0, max: 15, step: 1, defaultValue: 5,
+        formatValue: v => parseInt(v) >= 15 ? '15h+' : v + 'h'
+      },
+      {
+        id: 'email', type: 'email',
+        question: 'Quel email pour votre compte Spotter ?',
+        helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
+        placeholder: 'vous@agence.fr'
+      }
+    ]
+  },
+
+  // ===========================================
+  // ORGANISME DE FORMATION
+  // ===========================================
+  formation: {
+    label: 'Organisme de formation',
+    chip: 'Pour organismes de formation',
+    title: 'Quelques questions pour personnaliser votre app',
+    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité de formation.',
+    landingIcon: '🎓',
+    landingTitle: 'Formation',
+    landingDesc: 'LMS, suivi apprenants, conventions OPCO, supports pédagogiques, attestations...',
+    questions: [
+      {
+        id: 'tools', type: 'multi',
+        question: 'Quels outils utilisez-vous au quotidien ?',
+        options: [
+          { value: 'moodle',    label: 'Moodle' },
+          { value: '360',       label: '360Learning' },
+          { value: 'rise',      label: 'Rise / Articulate' },
+          { value: 'digiforma', label: 'Digiforma' },
+          { value: 'eden',      label: 'Edusign' },
+          { value: 'outlook',   label: 'Outlook / Gmail' },
+          { value: 'excel',     label: 'Excel / Google Sheets' },
+          { value: 'canva',     label: 'Canva / Adobe' },
+          { value: 'autre',     label: 'Autre' },
+        ]
+      },
+      {
+        id: 'role', type: 'radio',
+        question: 'Quel est votre rôle ?',
+        options: [
+          { value: 'dirigeant',   label: 'Dirigeant(e) / Responsable d\'organisme' },
+          { value: 'formateur',   label: 'Formateur(rice)' },
+          { value: 'ingped',      label: 'Ingénieur(e) pédagogique' },
+          { value: 'admin',       label: 'Responsable administratif / commercial' },
+          { value: 'assistant',   label: 'Assistant(e)' },
+          { value: 'autre',       label: 'Autre' },
+        ]
+      },
+      {
+        id: 'size', type: 'radio',
+        question: 'Combien êtes-vous dans l\'organisme ?',
+        options: [
+          { value: 'solo',  label: 'Tout seul' },
+          { value: '1-3',   label: '1 à 3 personnes' },
+          { value: '4-10',  label: '4 à 10 personnes' },
+          { value: '11-30', label: '11 à 30 personnes' },
+          { value: '30+',   label: 'Plus de 30 personnes' },
+        ]
+      },
+      {
+        id: 'modalite', type: 'radio',
+        question: 'Quelle modalité de formation est dominante chez vous ?',
+        options: [
+          { value: 'presentiel', label: 'Présentiel' },
+          { value: 'distanciel', label: 'Distanciel synchrone' },
+          { value: 'mixte',      label: 'Mixte (blended learning)' },
+          { value: 'async',      label: 'E-learning asynchrone' },
+        ]
+      },
+      {
+        id: 'clients', type: 'radio',
+        question: 'Quel type de clientèle accueillez-vous principalement ?',
+        options: [
+          { value: 'entreprises',  label: 'Entreprises (B2B)' },
+          { value: 'particuliers', label: 'Particuliers (B2C)' },
+          { value: 'opco',         label: 'Financements OPCO / CPF' },
+          { value: 'mix',          label: 'Un mix selon les sessions' },
+        ]
+      },
+      {
+        id: 'volume', type: 'radio',
+        question: 'Combien de sessions de formation organisez-vous par mois ?',
+        options: [
+          { value: '1-3',  label: 'Moins de 3' },
+          { value: '4-10', label: '4 à 10' },
+          { value: '11-30',label: '11 à 30' },
+          { value: '30+',  label: 'Plus de 30' },
+        ]
+      },
+      {
+        id: 'habits', type: 'radio',
+        question: 'Y a-t-il des tâches que vous refaites pour chaque session ?',
+        helper: 'Conventions, attestations, relances apprenants, mise en forme de supports...',
+        options: [
+          { value: 'oui-clair', label: 'Oui, très clairement' },
+          { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },
+          { value: 'non',       label: 'Non, je vois pas trop' },
+        ]
+      },
+      {
+        id: 'hours', type: 'slider',
+        question: 'Combien d\'heures par semaine vous estimez perdre sur des tâches répétitives ?',
+        helper: 'À la louche. Ça nous aide à calibrer les seuils de détection.',
+        min: 0, max: 15, step: 1, defaultValue: 5,
+        formatValue: v => parseInt(v) >= 15 ? '15h+' : v + 'h'
+      },
+      {
+        id: 'email', type: 'email',
+        question: 'Quel email pour votre compte Spotter ?',
+        helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
+        placeholder: 'vous@organisme.fr'
+      }
+    ]
   }
 
 };
