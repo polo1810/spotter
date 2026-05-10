@@ -508,6 +508,60 @@ main {
 
 .activate-btn:hover { opacity: 0.9; }
 
+/* === SECTION APERÇU (démo dans le dashboard vide) === */
+.preview-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 2px dashed #e5e3dd;
+  position: relative;
+  opacity: 0.97;
+}
+
+.preview-section::before {
+  content: 'APERÇU';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fafaf7;
+  color: #888;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 0 14px;
+}
+
+.preview-section .preview-banner {
+  background: linear-gradient(135deg, #1f3b6e 0%, #3056ab 100%);
+  margin-bottom: 28px;
+}
+
+.preview-activate-btn {
+  background: #94a3b8 !important;
+  cursor: not-allowed !important;
+  opacity: 0.8;
+}
+
+.preview-activate-btn:hover { opacity: 0.8 !important; }
+
+.preview-auto-card {
+  position: relative;
+}
+
+.preview-auto-card::after {
+  content: '👁️ Aperçu';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
 .activated-badge {
   display: inline-flex;
   align-items: center;

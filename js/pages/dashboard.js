@@ -80,6 +80,7 @@ function renderEmptyState(client) {
       </div>
       <div class="period-badge pending">Analyse en cours</div>
     </div>
+
     <div class="waiting-banner">
       <div class="waiting-icon">⏳</div>
       <div class="waiting-text">
@@ -88,10 +89,128 @@ function renderEmptyState(client) {
         <div class="waiting-progress"><div class="waiting-progress-fill"></div></div>
       </div>
     </div>
+
+    <div class="section-title">📊 Top des actions répétitives détectées <span class="section-pending-badge">EN COURS</span></div>
     <div class="empty-actions">
       <div class="empty-actions-icon">🔍</div>
       <div class="empty-actions-title">Détection en cours...</div>
       <div class="empty-actions-sub">Repassez d'ici quelques jours pour voir vos premières répétitions.</div>
+    </div>
+
+    <div class="section-title">⚡ Automatisations prêtes à activer <span class="section-pending-badge">À VENIR</span></div>
+    <div class="empty-autos">
+      <div class="empty-autos-icon">⚡</div>
+      <div class="empty-autos-title">On prépare vos automatisations</div>
+      <div class="empty-autos-sub">Une fois l'analyse terminée, on vous proposera ici des automatisations <strong>conçues spécifiquement pour vos pertes de temps</strong>, activables en un clic.</div>
+    </div>
+
+    ${renderPreviewSection()}
+  `;
+}
+
+// ===========================================
+// SECTION APERÇU (démo de ce à quoi ressemble le dashboard une fois rempli)
+// ===========================================
+
+const PREVIEW_REPETITIONS = [
+  { libelle: "Renommage manuel pièces OCR",         description: "Correction du nom fournisseur ou date après OCR Pennylane",   frequence: 87, frequence_unit: 'semaine', temps_perdu_minutes: 165, statut: 'detected' },
+  { libelle: "Réponses récurrentes par mail",       description: "Mêmes formulations envoyées plusieurs fois aux clients",       frequence: 52, frequence_unit: 'semaine', temps_perdu_minutes: 135, statut: 'automatable' },
+  { libelle: "Export Pennylane → Excel reportings", description: "Retraitement manuel pour reportings clients mensuels",          frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 110, statut: 'automatable' },
+  { libelle: "Saisie multi-endroits info client",   description: "Mise à jour adresse/RIB sur Pennylane + Excel suivi",           frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 55,  statut: 'detected' },
+  { libelle: "Vérification cohérence TVA",          description: "Contrôle manuel entre Pennylane et déclaration",                frequence: 6,  frequence_unit: 'mois',    temps_perdu_minutes: 45,  statut: 'automated' },
+];
+
+const PREVIEW_AUTOS = [
+  {
+    title: "Auto-correction OCR fournisseurs récurrents",
+    desc:  "On identifie les fournisseurs qui posent problème à l'OCR et on pré-paramètre une règle de mapping qui corrige automatiquement le nom + la date.",
+    gain:  "+2h15/sem",
+    tools: ["Pennylane"],
+    effort: "0 ligne de code · 2 minutes"
+  },
+  {
+    title: "Templates de réponse mail intelligents",
+    desc:  "Les 5 réponses-types qui reviennent dans 80% de vos mails clients sont transformées en raccourcis Outlook, prêts à l'emploi.",
+    gain:  "+1h50/sem",
+    tools: ["Outlook"],
+    effort: "0 ligne de code · 1 minute"
+  },
+  {
+    title: "Export Pennylane → reporting client en 1 clic",
+    desc:  "On automatise le retraitement Excel mensuel : extraction Pennylane, mise en forme, envoi au client.",
+    gain:  "+1h30/sem",
+    tools: ["Pennylane", "Excel", "Outlook"],
+    effort: "0 ligne de code · 3 minutes"
+  }
+];
+
+function renderPreviewSection() {
+  const stats = computeStats(PREVIEW_REPETITIONS);
+
+  return `
+    <div class="preview-section">
+      <div class="preview-banner">
+        <div class="preview-banner-icon">👁️</div>
+        <div class="preview-banner-text">
+          <div class="preview-banner-title">Aperçu — voici à quoi ressemblera votre dashboard</div>
+          <div class="preview-banner-sub">Ces données sont fictives. Elles vous donnent une idée concrète de ce que vous verrez une fois l'analyse terminée.</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-label">Temps perdu / sem</div>
+          <div class="stat-value danger">${stats.tempsPerduSem}</div>
+          <div class="stat-sub">total cumulé sur les répétitions détectées</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Actions répétitives détectées</div>
+          <div class="stat-value info">${stats.total}</div>
+          <div class="stat-sub">tâches identifiées</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Gain potentiel / sem</div>
+          <div class="stat-value success">${stats.gainSem}</div>
+          <div class="stat-sub">si toutes les automatisables sont activées</div>
+        </div>
+      </div>
+
+      <div class="section-title">📊 Top des actions répétitives détectées</div>
+      <div class="actions-table">
+        ${PREVIEW_REPETITIONS.map(renderRepetitionRow).join('')}
+      </div>
+
+      <div class="section-title">⚡ Automatisations prêtes à activer</div>
+      <div class="auto-list">
+        ${PREVIEW_AUTOS.map(renderPreviewAutoCard).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderPreviewAutoCard(a) {
+  return `
+    <div class="auto-card preview-auto-card">
+      <div class="auto-header">
+        <div class="auto-title-block">
+          <div class="auto-prefix">⚡ Automatisation conçue pour vous</div>
+          <div class="auto-title">${escapeHtml(a.title)}</div>
+          <div class="auto-desc">${escapeHtml(a.desc)}</div>
+        </div>
+        <div class="auto-gain-badge">${escapeHtml(a.gain)}</div>
+      </div>
+      <div class="auto-tools">
+        ${a.tools.map((t, i) => `
+          <span class="tool-chip">🔌 ${escapeHtml(t)}</span>
+          ${i < a.tools.length - 1 ? '<span class="tool-arrow">→</span>' : ''}
+        `).join('')}
+      </div>
+      <div class="auto-footer">
+        <div class="auto-effort">⚙️ <strong>${escapeHtml(a.effort)}</strong></div>
+        <button class="activate-btn preview-activate-btn" disabled title="Aperçu — disponible une fois l'analyse terminée">
+          Activer en un clic →
+        </button>
+      </div>
     </div>
   `;
 }

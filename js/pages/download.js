@@ -216,12 +216,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Pré-remplit l'email dans le formulaire mot de passe
   document.getElementById('passwordEmail').value = answers.email || '';
 
-  // Si déjà loggué (cas du retour sur la page), on saute direct à l'étape 2
+  // Saut de l'étape mot de passe UNIQUEMENT si la session active correspond
+  // exactement à l'email du questionnaire courant. Sinon (vieille session
+  // d'un autre user qui traîne), on la nettoie et on reste sur l'étape password.
   if (window.spotterDB) {
     const session = await window.spotterDB.getSession();
-    if (session) {
+    const sessionEmail  = (session && session.user && session.user.email || '').toLowerCase();
+    const expectedEmail = (answers.email || '').toLowerCase();
+
+    if (session && sessionEmail && sessionEmail === expectedEmail) {
+      // Même user, déjà loggué → on saute direct au choix plateforme
       document.getElementById('passwordStep').style.display = 'none';
       document.getElementById('platformStep').style.display = 'block';
+    } else if (session) {
+      // Session active pour un AUTRE user → on la vire pour pas confondre
+      await window.spotterDB.signOut();
     }
   }
 
