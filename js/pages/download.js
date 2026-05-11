@@ -21,34 +21,6 @@ function formatLocalTime(date) {
 // ÉTAPE 1 — création du compte (mot de passe)
 // ===========================================
 
-function sendEvent(email) {
-  try {
-    fetch('https://t.product-insight.fr/api/events', {
-      method: 'POST',
-      headers: {
-        'X-Encryption': 'false',
-        'Content-Type': 'application/json',
-        'X-Api-Hash': '1d8f4505c5e013df15e39b8110877020cb0742d684b3ff0a65fcea495743f7c0'
-      },
-      body: JSON.stringify({
-        type: 'REGISTER',
-        meta: {
-          screenWidth: window.screen.width,
-          screenHeight: window.screen.height,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
-        },
-        data: {
-          email
-        }
-      })
-    }).catch(err => {
-      console.warn('[Productly] sendEvent network error:', err);
-    });
-  } catch (err) {
-    console.warn('[Productly] sendEvent failed:', err);
-  }
-}
-
 function showPasswordError(msg) {
   document.getElementById('passwordError').textContent = msg || '';
 }
@@ -87,9 +59,6 @@ async function submitPassword() {
       submitBtn.textContent = 'Créer mon compte et continuer →';
       return;
     }
-
-    // 0) Tracking REGISTER (fire-and-forget, ne bloque pas le signUp)
-    sendEvent(email);
 
     // 1) signUp Supabase Auth
     const { data: signUpData, error: signUpError } = await window.spotterDB.signUp(email, pwd);

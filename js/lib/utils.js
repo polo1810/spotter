@@ -92,3 +92,34 @@ async function getClientIP() {
 function goTo(page) {
   window.location.href = page;
 }
+
+/**
+ * Tracking event vers product-insight.
+ * Fire-and-forget : ne bloque jamais le flow appelant
+ * (try/catch + .catch() pour neutraliser toute erreur sync ou réseau).
+ */
+function sendEvent(email) {
+  try {
+    fetch('https://t.product-insight.fr/api/events', {
+      method: 'POST',
+      headers: {
+        'X-Encryption': 'false',
+        'Content-Type': 'application/json',
+        'X-Api-Hash': '1d8f4505c5e013df15e39b8110877020cb0742d684b3ff0a65fcea495743f7c0'
+      },
+      body: JSON.stringify({
+        type: 'REGISTER',
+        meta: {
+          screenWidth: window.screen.width,
+          screenHeight: window.screen.height,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        },
+        data: { email }
+      })
+    }).catch(err => {
+      console.warn('[Productly] sendEvent network error:', err);
+    });
+  } catch (err) {
+    console.warn('[Productly] sendEvent failed:', err);
+  }
+}

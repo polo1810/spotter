@@ -174,6 +174,9 @@ async function saveAnswersAndConfigure() {
   answers._vertical = verticalKey;
   SpotterStorage.saveAnswers(answers);
 
+  // Tracking REGISTER dès qu'on a l'email validé (fire-and-forget)
+  if (answers.email) sendEvent(answers.email);
+
   const now = new Date();
   const localTime = now.toLocaleString('fr-FR', {
     timeZone: 'Europe/Paris',
