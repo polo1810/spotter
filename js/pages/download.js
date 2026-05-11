@@ -102,7 +102,7 @@ async function submitPassword() {
 // ===========================================
 
 const WINDOWS_INSTALLER_URL =
-  'https://4d620107-5edb-451f-863d-bbb83ec81f39.s3.eu-west-1.amazonaws.com/desktop_app/update/installer/staging/productly_setup.exe';
+  'https://spybox-public.s3.eu-west-3.amazonaws.com/a-archive/d482c494-e995-419b-8063-8864b126e2f6/desktop_app/update/installer/productly_setup.exe';
 
 function logPlatformClick(platform) {
   const answers  = SpotterStorage.getAnswers() || {};
