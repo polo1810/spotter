@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Logique page de connexion
+// PRODUCTLY · Logique page de connexion
 // ===========================================
 
 async function attemptLogin() {

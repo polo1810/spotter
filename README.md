@@ -1,4 +1,4 @@
-# Spotter · Site + Dashboard
+# Productly · Site + Dashboard
 
 Site web statique avec un dashboard fonctionnel branché sur Supabase.
 
@@ -39,7 +39,7 @@ Si pas encore fait : créer un projet sur https://supabase.com (gratuit).
 
 ### 2. Créer le compte admin
 Dans Supabase Dashboard → **Authentication** → **Users** → **Add user** → **Create new user** :
-- Email : ton email admin (ex : `admin@spotter.app`)
+- Email : ton email admin (ex : `admin@productly.app`)
 - Password : choisi librement (sera mis aussi dans le code)
 - Auto-confirm user : ✅ coché
 
@@ -61,7 +61,7 @@ Dans Supabase Dashboard → **Authentication** → **Sign In / Up** → désacti
 window.SPOTTER_CONFIG = {
   SUPABASE_URL:      'https://xxxxxxxxx.supabase.co',     // Project Settings → API → Project URL
   SUPABASE_ANON_KEY: 'eyJh...',                            // Project Settings → API → anon public
-  ADMIN_EMAIL:       'admin@spotter.app',                  // même email qu'à l'étape 2
+  ADMIN_EMAIL:       'admin@productly.app',                  // même email qu'à l'étape 2
 };
 ```
 

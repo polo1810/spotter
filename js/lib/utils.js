@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Utilitaires partagés entre pages
+// PRODUCTLY · Utilitaires partagés entre pages
 // ===========================================
  
 /**

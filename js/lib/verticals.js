@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Définition des verticales métier
+// PRODUCTLY · Définition des verticales métier
 // ===========================================
 // Ajouter une nouvelle cible = ajouter une entrée ici.
 // Le questionnaire se génère entièrement depuis cette config.
@@ -10,7 +10,7 @@ const VERTICALS = {
     label: 'Cabinet d\'expertise comptable',
     chip: 'Pour cabinets d\'expertise comptable',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter spécifiquement pour vous.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly spécifiquement pour vous.',
     // --- Méta pour la carte de la landing ---
     landingIcon: '📊',
     landingTitle: 'Expertise comptable',
@@ -112,7 +112,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@cabinet.fr'
       }
@@ -123,7 +123,7 @@ const VERTICALS = {
     label: 'Cabinet de recrutement',
     chip: 'Pour cabinets de recrutement',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter spécifiquement pour votre activité.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly spécifiquement pour votre activité.',
     // --- Méta pour la carte de la landing ---
     landingIcon: '🎯',
     landingTitle: 'Recrutement',
@@ -228,7 +228,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@cabinet.fr'
       }
@@ -242,7 +242,7 @@ const VERTICALS = {
     label: 'Cabinet d\'avocats',
     chip: 'Pour cabinets d\'avocats',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité juridique.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité juridique.',
     landingIcon: '⚖️',
     landingTitle: 'Avocat',
     landingDesc: 'Doctrine, Lexis, Dalloz, gestion de dossiers, rédaction d\'actes, facturation aux temps...',
@@ -346,7 +346,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@cabinet.fr'
       }
@@ -360,7 +360,7 @@ const VERTICALS = {
     label: 'Agence immobilière',
     chip: 'Pour agences immobilières',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité immobilière.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité immobilière.',
     landingIcon: '🏠',
     landingTitle: 'Agence immobilière',
     landingDesc: 'Hektor, Apimo, gestion mandats, suivi visites, relances clients, photos d\'annonces...',
@@ -453,7 +453,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@agence.fr'
       }
@@ -467,7 +467,7 @@ const VERTICALS = {
     label: 'Cabinet d\'architectes',
     chip: 'Pour cabinets d\'architectes',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité.',
     landingIcon: '📐',
     landingTitle: 'Architecte',
     landingDesc: 'AutoCAD, Revit, ArchiCAD, suivi de chantier, dossiers permis, comptes-rendus de visite...',
@@ -550,7 +550,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@cabinet.fr'
       }
@@ -564,7 +564,7 @@ const VERTICALS = {
     label: 'Cabinet de conseil',
     chip: 'Pour cabinets de conseil',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité de conseil.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité de conseil.',
     landingIcon: '💼',
     landingTitle: 'Conseil & Consultants',
     landingDesc: 'PowerPoint, Excel, Notion, livrables clients, comptes-rendus de mission, propales...',
@@ -648,7 +648,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@cabinet.fr'
       }
@@ -662,7 +662,7 @@ const VERTICALS = {
     label: 'Agence marketing & communication',
     chip: 'Pour agences marketing',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité marketing.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité marketing.',
     landingIcon: '📣',
     landingTitle: 'Marketing & Com',
     landingDesc: 'HubSpot, Mailchimp, Google Ads, LinkedIn, reportings clients, suivis de campagne...',
@@ -755,7 +755,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@agence.fr'
       }
@@ -769,7 +769,7 @@ const VERTICALS = {
     label: 'Organisme de formation',
     chip: 'Pour organismes de formation',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Spotter pour votre activité de formation.',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité de formation.',
     landingIcon: '🎓',
     landingTitle: 'Formation',
     landingDesc: 'LMS, suivi apprenants, conventions OPCO, supports pédagogiques, attestations...',
@@ -861,7 +861,7 @@ const VERTICALS = {
       },
       {
         id: 'email', type: 'email',
-        question: 'Quel email pour votre compte Spotter ?',
+        question: 'Quel email pour votre compte Productly ?',
         helper: 'On vous envoie le lien d\'installation, et vous pourrez vous connecter à votre dashboard depuis n\'importe où.',
         placeholder: 'vous@organisme.fr'
       }

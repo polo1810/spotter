@@ -1,5 +1,5 @@
 # ============================================================
-# SPOTTER · Configuration Netlify
+# PRODUCTLY · Configuration Netlify
 # ============================================================
 # Build : tools/build.js concatène les partials landing → index.html
 # (cf. README.md section "Architecture landing")

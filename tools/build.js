@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SPOTTER · Build script
+ * PRODUCTLY · Build script
  *
  * Concatène les 9 partials de partials/landing/*.html dans le squelette
  * partials/landing/_skeleton.html et produit index.html à la racine.

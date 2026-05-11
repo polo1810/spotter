@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Client Supabase + helpers
+// PRODUCTLY · Client Supabase + helpers
 // ===========================================
 // Charge le SDK Supabase via CDN, expose `window.spotterDB` avec toutes
 // les fonctions utiles (auth, queries clients, queries repetitions, admin).

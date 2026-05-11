@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Landing — interactivité (grille métiers + recherche + modal)
+// PRODUCTLY · Landing — interactivité (grille métiers + recherche + modal)
 // ===========================================
 // Le contenu textuel de la page est déjà dans le HTML servi
 // (concaténé par tools/build.js depuis les partials).
@@ -124,7 +124,7 @@ function openMetierModal(item) {
     </div>
 
     <div class="metier-modal-section">
-      <div class="metier-modal-section-title">Ce que Spotter te proposera</div>
+      <div class="metier-modal-section-title">Ce que Productly te proposera</div>
       <ul class="metier-modal-autos">
         ${item.autos.map(a => `<li>${escapeHtml(a)}</li>`).join('')}
       </ul>

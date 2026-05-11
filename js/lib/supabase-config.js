@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Configuration Supabase
+// PRODUCTLY · Configuration Supabase
 // ===========================================
 // SUPABASE_URL + SUPABASE_ANON_KEY : Project Settings → API
 // ADMIN_EMAIL : email du compte admin créé dans Authentication → Users.

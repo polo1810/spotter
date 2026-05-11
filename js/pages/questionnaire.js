@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Logique du questionnaire (multi-vertical)
+// PRODUCTLY · Logique du questionnaire (multi-vertical)
 // ===========================================
 
 // --- Détection de la verticale depuis l'URL (?v=recrutement) ---
@@ -204,7 +204,7 @@ async function saveAnswersAndConfigure() {
   // 2) Notification Formspree (conservée pour traçabilité interne)
   const payload = {
     submission_type: 'questionnaire_completed',
-    _subject: `[Spotter] Questionnaire — ${currentVertical.label}`,
+    _subject: `[Productly] Questionnaire — ${currentVertical.label}`,
     vertical: verticalKey,
     visitor_ip: clientIP || 'non disponible',
     submitted_at: now.toISOString(),

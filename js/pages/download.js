@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Logique page de téléchargement
+// PRODUCTLY · Logique page de téléchargement
 // ===========================================
 
 let installTriggered = false;
@@ -112,7 +112,7 @@ function logPlatformClick(platform) {
 
   submitToFormspree({
     submission_type:   'platform_clicked',
-    _subject:          `[Spotter] Téléchargement ${platform} — ${email}`,
+    _subject:          `[Productly] Téléchargement ${platform} — ${email}`,
     platform:          platform,
     vertical:          vertical,
     email:             email,
@@ -144,7 +144,7 @@ function showWindowsDownload() {
 
   document.getElementById('installPlatform').textContent = 'Windows';
   document.getElementById('installIcon').innerHTML       = ICON_DOWNLOAD;
-  document.getElementById('installTitle').textContent    = 'Téléchargement de Spotter…';
+  document.getElementById('installTitle').textContent    = 'Téléchargement de Productly…';
   document.getElementById('installStatus').textContent   = 'Le téléchargement démarre.';
   document.getElementById('installProgress').style.width = '0%';
   document.getElementById('installPercent').textContent  = '';
@@ -187,7 +187,7 @@ function showMacUnavailable() {
   document.getElementById('installProgress').parentElement.style.display = 'none';
   document.getElementById('installPercent').style.display = 'none';
   document.getElementById('installStatus').innerHTML =
-    'Spotter pour macOS arrive très bientôt.<br>' +
+    'Productly pour macOS arrive très bientôt.<br>' +
     'On revient vers toi par email dès que c\'est dispo — ton compte est déjà prêt.<br><br>' +
     '<button onclick="closeInstallModal()" class="install-modal-btn">OK, j\'ai compris</button>';
 }

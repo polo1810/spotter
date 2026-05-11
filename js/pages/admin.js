@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Admin — gestion clients & répétitions
+// PRODUCTLY · Admin — gestion clients & répétitions
 // ===========================================
 //
 // Sécurité : on s'appuie uniquement sur la session Supabase Auth.

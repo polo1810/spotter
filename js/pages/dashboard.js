@@ -1,5 +1,5 @@
 // ===========================================
-// SPOTTER · Dashboard branché sur Supabase
+// PRODUCTLY · Dashboard branché sur Supabase
 // ===========================================
 
 let currentClient = null;

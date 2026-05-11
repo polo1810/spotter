@@ -1,5 +1,5 @@
 -- ===========================================
--- SPOTTER · Schéma Supabase
+-- PRODUCTLY · Schéma Supabase
 -- ===========================================
 -- À exécuter dans le SQL Editor de ton dashboard Supabase.
 -- Tu peux le lancer plusieurs fois, c'est idempotent.
