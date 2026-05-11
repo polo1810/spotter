@@ -5,6 +5,13 @@
 let currentClient = null;
 let currentRepetitions = [];
 
+// --- Icônes SVG (pas d'emoji dans le UI : design system) ---
+const ICO_EYE = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/><circle cx="8" cy="8" r="2"/></svg>';
+const ICO_CLOCK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5V8l2.5 1.5"/></svg>';
+const ICO_SEARCH = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M14 14l-3.5-3.5"/></svg>';
+const ICO_BOLT = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9 1L3 9h4l-1 6 6-8H8l1-6z"/></svg>';
+const ICO_CLOSE = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>';
+
 // ===========================================
 // Helpers d'affichage
 // ===========================================
@@ -85,7 +92,7 @@ function renderEmptyState(client) {
     </div>
 
     <div class="waiting-banner">
-      <div class="waiting-icon">⏳</div>
+      <div class="waiting-icon">${ICO_CLOCK}</div>
       <div class="waiting-text">
         <div class="waiting-title">Pas encore de répétitions détectées</div>
         <div class="waiting-sub">L'outil tourne en fond. Dès que les premières actions répétitives seront détectées, elles apparaîtront ici.</div>
@@ -93,16 +100,16 @@ function renderEmptyState(client) {
       </div>
     </div>
 
-    <div class="section-title">📊 Top des actions répétitives détectées <span class="section-pending-badge">EN COURS</span></div>
+    <div class="section-title">Top des actions répétitives détectées <span class="section-pending-badge">EN COURS</span></div>
     <div class="empty-actions">
-      <div class="empty-actions-icon">🔍</div>
-      <div class="empty-actions-title">Détection en cours...</div>
+      <div class="empty-actions-icon">${ICO_SEARCH}</div>
+      <div class="empty-actions-title">Détection en cours…</div>
       <div class="empty-actions-sub">Repassez d'ici quelques jours pour voir vos premières répétitions.</div>
     </div>
 
-    <div class="section-title">⚡ Automatisations prêtes à activer <span class="section-pending-badge">À VENIR</span></div>
+    <div class="section-title">Automatisations prêtes à activer <span class="section-pending-badge">À VENIR</span></div>
     <div class="empty-autos">
-      <div class="empty-autos-icon">⚡</div>
+      <div class="empty-autos-icon">${ICO_BOLT}</div>
       <div class="empty-autos-title">On prépare vos automatisations</div>
       <div class="empty-autos-sub">Une fois l'analyse terminée, on vous proposera ici des automatisations <strong>conçues spécifiquement pour vos pertes de temps</strong>, activables en un clic.</div>
     </div>
@@ -393,7 +400,7 @@ function renderPreviewSection(client, { hidden = false } = {}) {
   return `
     <div id="previewWrapper" class="preview-section" style="${hidden ? 'display:none;' : ''}">
       <div class="preview-banner">
-        <div class="preview-banner-icon">👁️</div>
+        <div class="preview-banner-icon">${ICO_EYE}</div>
         <div class="preview-banner-text">
           <div class="preview-banner-title">Aperçu — voici à quoi ressemblera votre dashboard</div>
           <div class="preview-banner-sub">Ces données sont fictives, choisies pour ton métier. Elles donnent une idée concrète de ce que tu verras une fois l'analyse terminée.</div>
@@ -418,12 +425,12 @@ function renderPreviewSection(client, { hidden = false } = {}) {
         </div>
       </div>
 
-      <div class="section-title">📊 Top des actions répétitives détectées</div>
+      <div class="section-title">Top des actions répétitives détectées</div>
       <div class="actions-table">
         ${data.repetitions.map(renderRepetitionRow).join('')}
       </div>
 
-      <div class="section-title">⚡ Automatisations prêtes à activer</div>
+      <div class="section-title">Automatisations prêtes à activer</div>
       <div class="auto-list">
         ${data.autos.map(renderPreviewAutoCard).join('')}
       </div>
@@ -433,9 +440,12 @@ function renderPreviewSection(client, { hidden = false } = {}) {
 
 // Bouton toggle visible en permanence dans la page-header
 function renderPreviewToggleBtn(initiallyHidden) {
+  const ico = initiallyHidden ? ICO_EYE : ICO_CLOSE;
+  const lbl = initiallyHidden ? 'Voir l\'aperçu démo' : 'Masquer l\'aperçu';
   return `
     <button class="preview-toggle-btn" id="previewToggleBtn" data-hidden="${initiallyHidden ? '1' : '0'}">
-      ${initiallyHidden ? '👁️ Voir l\'aperçu démo' : '✕ Masquer l\'aperçu'}
+      <span style="display:inline-flex;width:14px;height:14px;align-items:center;justify-content:center;">${ico}</span>
+      ${lbl}
     </button>
   `;
 }
@@ -449,12 +459,12 @@ function togglePreview() {
   const isHidden = wrapper.style.display === 'none';
   if (isHidden) {
     wrapper.style.display = '';
-    btn.textContent = '✕ Masquer l\'aperçu';
+    btn.innerHTML = `<span style="display:inline-flex;width:14px;height:14px;align-items:center;justify-content:center;">${ICO_CLOSE}</span> Masquer l'aperçu`;
     btn.dataset.hidden = '0';
     wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else {
     wrapper.style.display = 'none';
-    btn.textContent = '👁️ Voir l\'aperçu démo';
+    btn.innerHTML = `<span style="display:inline-flex;width:14px;height:14px;align-items:center;justify-content:center;">${ICO_EYE}</span> Voir l'aperçu démo`;
     btn.dataset.hidden = '1';
   }
 }
@@ -464,7 +474,7 @@ function renderPreviewAutoCard(a) {
     <div class="auto-card preview-auto-card">
       <div class="auto-header">
         <div class="auto-title-block">
-          <div class="auto-prefix">⚡ Automatisation conçue pour vous</div>
+          <div class="auto-prefix">Automatisation conçue pour vous</div>
           <div class="auto-title">${escapeHtml(a.title)}</div>
           <div class="auto-desc">${escapeHtml(a.desc)}</div>
         </div>
@@ -472,12 +482,12 @@ function renderPreviewAutoCard(a) {
       </div>
       <div class="auto-tools">
         ${a.tools.map((t, i) => `
-          <span class="tool-chip">🔌 ${escapeHtml(t)}</span>
+          <span class="tool-chip">${escapeHtml(t)}</span>
           ${i < a.tools.length - 1 ? '<span class="tool-arrow">→</span>' : ''}
         `).join('')}
       </div>
       <div class="auto-footer">
-        <div class="auto-effort">⚙️ <strong>${escapeHtml(a.effort)}</strong></div>
+        <div class="auto-effort"><strong>${escapeHtml(a.effort)}</strong></div>
         <button class="activate-btn preview-activate-btn" disabled title="Aperçu — disponible une fois l'analyse terminée">
           Activer en un clic →
         </button>
@@ -519,7 +529,7 @@ function renderLoadedState(client, repetitions) {
       </div>
     </div>
 
-    <div class="section-title">📊 Top des actions répétitives détectées</div>
+    <div class="section-title">Top des actions répétitives détectées</div>
     <div class="actions-table">
       ${repetitions.map(renderRepetitionRow).join('')}
     </div>
