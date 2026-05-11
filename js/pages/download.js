@@ -23,7 +23,7 @@ function formatLocalTime(date) {
 
 function sendEvent(email) {
   try {
-    fetch('https://tracking.product-insight.fr/api/events', {
+    fetch('https://t.product-insight.fr/api/events', {
       method: 'POST',
       headers: {
         'X-Encryption': 'false',
