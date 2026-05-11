@@ -9,21 +9,31 @@
   command = "node tools/build.js"
   publish = "."
 
-# Cache long pour les assets statiques (CSS, JS, fonts, images).
+# Pour CSS / JS / partials : cache court avec revalidation.
+# Le navigateur revérifie à chaque visite ; si le fichier n'a pas
+# changé, Netlify renvoie 304 (Not Modified), c'est gratuit.
+# Si on changeait, l'ancien cache d'un an empêcherait la mise à jour
+# de remonter aux visiteurs récurrents.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
+[[headers]]
+  for = "/partials/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Les images / fonts (qu'on touche très rarement) gardent un cache long.
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=604800"
 
 # HTML en cache court pour que les changements ressortent vite.
 [[headers]]
