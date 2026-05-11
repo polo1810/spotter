@@ -378,6 +378,89 @@
   padding: 32px 32px 28px;
   text-align: center;
   animation: popIn 0.3s ease-out;
+  position: relative;
+}
+
+.install-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: inherit;
+  transition: background .15s, border-color .15s, color .15s;
+}
+
+.install-modal-close:hover {
+  background: var(--bg-sunk);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+/* CTA dashboard mis en avant dans la popup */
+.install-dashboard-cta {
+  display: none; /* affiché par JS quand la popup s'ouvre */
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: var(--radius);
+  text-decoration: none;
+  text-align: left;
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.1);
+  transition: background .15s ease, transform .15s ease;
+}
+
+.install-dashboard-cta:hover {
+  background: oklch(from var(--ink) calc(l + 0.08) c h);
+  transform: translateY(-1px);
+}
+
+.install-dashboard-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.install-dashboard-cta-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--bg);
+}
+
+.install-dashboard-cta-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: color-mix(in oklch, var(--bg) 70%, var(--muted));
+  letter-spacing: 0.02em;
+}
+
+.install-dashboard-cta-arrow {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--bg);
+  flex-shrink: 0;
+  transition: transform .15s ease;
+}
+
+.install-dashboard-cta:hover .install-dashboard-cta-arrow {
+  transform: translateX(3px);
 }
 
 .install-icon {

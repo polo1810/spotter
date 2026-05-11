@@ -101,6 +101,7 @@
 <!-- INSTALL MODAL -->
 <div class="overlay" id="installModal">
   <div class="install-modal">
+    <button type="button" class="install-modal-close" id="installModalClose" aria-label="Fermer">×</button>
     <div class="install-icon" id="installIcon">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M2 14h12"/></svg>
     </div>
@@ -109,6 +110,15 @@
     <div class="install-progress"><div class="install-progress-fill" id="installProgress"></div></div>
     <div class="install-percent" id="installPercent">0%</div>
     <div class="install-status" id="installStatus">Téléchargement…</div>
+
+    <!-- CTA dashboard mis en avant -->
+    <a href="/pages/dashboard.html" id="installDashboardCta" class="install-dashboard-cta" target="_blank" rel="noopener">
+      <span class="install-dashboard-cta-text">
+        <span class="install-dashboard-cta-title">Accède à ton dashboard</span>
+        <span class="install-dashboard-cta-sub">En 1 clic, depuis n'importe quel appareil</span>
+      </span>
+      <span class="install-dashboard-cta-arrow" aria-hidden="true">→</span>
+    </a>
 
     <!-- Bloc rassurant SmartScreen Windows -->
     <div id="windowsReassure" class="windows-reassure" style="display:none;">

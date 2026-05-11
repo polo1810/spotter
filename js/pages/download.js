@@ -149,9 +149,11 @@ function showWindowsDownload() {
   document.getElementById('installProgress').style.width = '0%';
   document.getElementById('installPercent').textContent  = '';
 
-  // Affiche le bloc "rassurance SmartScreen"
+  // Affiche le bloc "rassurance SmartScreen" et le CTA dashboard
   const reassureEl = document.getElementById('windowsReassure');
   if (reassureEl) reassureEl.style.display = 'block';
+  const ctaEl = document.getElementById('installDashboardCta');
+  if (ctaEl) ctaEl.style.display = 'flex';
 
   // Petite anim visuelle pendant que le download démarre
   let progress = 0;
@@ -175,6 +177,9 @@ function showWindowsDownload() {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+
+  // Ouvre le dashboard dans un nouvel onglet (l'user vient de créer son compte → il est authentifié)
+  window.open('/pages/dashboard.html', '_blank', 'noopener');
 }
 
 function showMacUnavailable() {
@@ -188,8 +193,11 @@ function showMacUnavailable() {
   document.getElementById('installPercent').style.display = 'none';
   document.getElementById('installStatus').innerHTML =
     'Productly pour macOS arrive très bientôt.<br>' +
-    'On revient vers toi par email dès que c\'est dispo — ton compte est déjà prêt.<br><br>' +
-    '<button onclick="closeInstallModal()" class="install-modal-btn">OK, j\'ai compris</button>';
+    'On revient vers toi par email dès que c\'est dispo — ton compte est déjà prêt.';
+
+  // Le CTA dashboard reste visible : un Mac user peut quand même consulter son dashboard en attendant
+  const ctaEl = document.getElementById('installDashboardCta');
+  if (ctaEl) ctaEl.style.display = 'flex';
 }
 
 function closeInstallModal() {
@@ -200,6 +208,8 @@ function closeInstallModal() {
   document.getElementById('installPercent').style.display = '';
   const reassureEl = document.getElementById('windowsReassure');
   if (reassureEl) reassureEl.style.display = 'none';
+  const ctaEl = document.getElementById('installDashboardCta');
+  if (ctaEl) ctaEl.style.display = 'none';
 }
 
 // ===========================================
@@ -245,5 +255,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Listeners boutons plateforme
   document.querySelectorAll('.platform-btn').forEach(btn => {
     btn.addEventListener('click', () => startInstall(btn.dataset.platform));
+  });
+
+  // Fermeture de la popup : croix, clic sur l'overlay, touche Escape
+  const installModalEl = document.getElementById('installModal');
+  const installCloseEl = document.getElementById('installModalClose');
+  if (installCloseEl) installCloseEl.addEventListener('click', closeInstallModal);
+  if (installModalEl) {
+    installModalEl.addEventListener('click', (e) => {
+      if (e.target === installModalEl) closeInstallModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && installModalEl && installModalEl.classList.contains('show')) {
+      closeInstallModal();
+    }
   });
 });
