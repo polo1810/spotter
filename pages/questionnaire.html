@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Questionnaire · Spotter</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/css/questionnaire.css">
@@ -11,9 +16,17 @@
 <body>
 
 <div class="questionnaire">
+
+  <a href="/" class="q-back">← Retour à l'accueil</a>
+
   <div class="questionnaire-card">
+    <a href="/" class="q-brand">
+      <span class="brand-mark"></span>
+      Spotter
+    </a>
+
     <div class="q-header">
-      <div class="q-welcome">Bienvenue dans Spotter</div>
+      <div class="q-eyebrow">Bienvenue dans Spotter</div>
       <div class="q-title" id="qTitle">Quelques questions pour personnaliser votre app</div>
       <div class="q-subtitle" id="qSubtitle">Vos réponses nous permettent de configurer Spotter spécifiquement pour vous.</div>
       <div class="q-progress-bar"><div class="q-progress-fill" id="qProgressFill"></div></div>
@@ -34,7 +47,7 @@
   <div class="modal-card configure-modal">
     <div class="configure-header">
       <div class="configure-spinner"></div>
-      <div class="configure-title">On paramètre votre application...</div>
+      <div class="configure-title">On paramètre votre application…</div>
       <div class="configure-sub">Ça prend quelques secondes.</div>
     </div>
     <div class="configure-body">
