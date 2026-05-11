@@ -1,371 +1,634 @@
 /* ===========================================
-   DOWNLOAD PAGE
-   =========================================== */
+   SPOTTER · Download — styles spécifiques
+   ===========================================
+   Repose sur les tokens/composants de global.css.
+   Aligné avec landing.css, login.css et questionnaire.css.
+*/
 
 .download-page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 20px;
-  background: #f7f6f3;
-}
-
-.download-card {
-  background: white;
-  border-radius: 18px;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  padding: 48px 24px;
+  background: var(--bg);
+  position: relative;
   overflow: hidden;
 }
 
-.download-header {
-  background: linear-gradient(135deg, #2d7d4f 0%, #3ea569 100%);
-  color: white;
-  padding: 32px 24px;
-  text-align: center;
+/* Halo discret en fond — signature visuelle */
+.download-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 60% at 50% 0%, color-mix(in oklch, var(--accent) 8%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 10% 100%, color-mix(in oklch, var(--accent) 5%, transparent), transparent 70%);
+  pointer-events: none;
 }
 
-.download-icon-big {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 14px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 18px;
-  display: flex;
+.download-back {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .15s;
+  z-index: 2;
+}
+.download-back:hover { color: var(--ink); }
+
+.download-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.download-brand {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-size: 36px;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 17px;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 28px 36px 0;
 }
 
-.download-title {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  margin-bottom: 6px;
+/* ----------- HEADER ----------- */
+
+.download-header {
+  padding: 22px 36px 24px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
 }
 
-.download-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.5;
-}
-
-.download-body { padding: 24px; }
-
-.download-recap {
-  background: #f7f6f3;
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 18px;
-}
-
-.download-recap-title {
+.download-eyebrow {
+  font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #6b6b6b;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.download-recap-line {
-  font-size: 13px;
-  color: #4a4a4a;
-  padding: 4px 0;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.download-recap-line .check {
-  color: #2d7d4f;
-  font-weight: 700;
+.download-eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+  display: inline-block;
 }
+
+.download-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  color: var(--ink);
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+
+.download-sub {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ----------- BODY ----------- */
+
+.download-body {
+  padding: 0 36px 32px;
+}
+
+.download-recap {
+  background: var(--bg-sunk);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 24px;
+}
+
+.download-recap-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.download-recap-line {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  padding: 4px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.download-recap-line .check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===========================================
+   ÉTAPE MOT DE PASSE
+   =========================================== */
+
+.password-step-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.password-step-sub {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.password-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.password-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.password-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg);
+  transition: border-color .15s, box-shadow .15s;
+  outline: none;
+}
+
+.password-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 18%, transparent);
+}
+
+.password-input::placeholder { color: var(--faint); }
+
+.password-input[readonly] {
+  background: var(--bg-sunk);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.password-error {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--danger);
+  min-height: 16px;
+  line-height: 1.4;
+  margin: 4px 0 8px;
+}
+
+.password-submit {
+  width: 100%;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid transparent;
+  border-radius: 11px;
+  padding: 0 22px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .15s ease;
+  margin-top: 6px;
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.1);
+}
+
+.password-submit:hover:not(:disabled) {
+  background: oklch(from var(--ink) calc(l + 0.08) c h);
+}
+
+.password-submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.password-success {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in oklch, var(--accent) 35%, var(--border));
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--accent-ink);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.password-success .check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 700;
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.password-success a {
+  color: var(--accent-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.password-success a:hover { color: var(--accent); }
+
+/* ===========================================
+   ÉTAPE PLATEFORME
+   =========================================== */
 
 .download-platforms {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .platform-btn {
-  background: #1a1a1a;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: opacity 0.15s;
+  gap: 10px;
+  height: 52px;
+  padding: 0 18px;
+  border-radius: var(--radius);
   font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .15s ease;
+  border: 1px solid transparent;
 }
 
-.platform-btn:hover { opacity: 0.85; }
+.platform-btn[data-platform="Windows"] {
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.1);
+}
+.platform-btn[data-platform="Windows"]:hover {
+  background: oklch(from var(--ink) calc(l + 0.08) c h);
+}
 
-.platform-btn .platform-icon { font-size: 18px; }
+.platform-btn[data-platform="macOS"] {
+  background: var(--bg-elev);
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+.platform-btn[data-platform="macOS"]:hover {
+  background: var(--bg-sunk);
+  border-color: var(--ink);
+}
+
+.platform-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.platform-icon svg { width: 100%; height: 100%; display: block; }
 
 .download-note {
-  font-size: 12px;
-  color: #888;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--muted);
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.6;
+  padding-top: 6px;
 }
 
-/* === INSTALL OVERLAY === */
+/* ===========================================
+   INSTALL MODAL (overlay)
+   =========================================== */
+
 .install-modal {
-  background: white;
-  border-radius: 16px;
-  max-width: 420px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 440px;
   width: 100%;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-  animation: popIn 0.3s ease-out;
-  padding: 32px 28px;
+  padding: 32px 32px 28px;
   text-align: center;
+  animation: popIn 0.3s ease-out;
 }
 
 .install-icon {
-  font-size: 48px;
-  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
+.install-icon svg { width: 22px; height: 22px; }
+
 .install-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
   margin-bottom: 6px;
-  letter-spacing: -0.3px;
+  text-wrap: balance;
 }
 
 .install-sub {
-  font-size: 13px;
-  color: #6b6b6b;
-  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 22px;
 }
 
 .install-progress {
-  background: #f0eee8;
-  border-radius: 6px;
-  height: 8px;
+  background: var(--bg-sunk);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  height: 6px;
   overflow: hidden;
   margin-bottom: 10px;
 }
 
 .install-progress-fill {
-  background: linear-gradient(90deg, #2d7d4f 0%, #3ea569 100%);
+  background: var(--accent);
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .install-percent {
+  font-family: var(--font-mono);
   font-size: 12px;
-  color: #6b6b6b;
-  font-weight: 600;
+  color: var(--muted);
+  font-feature-settings: "tnum";
 }
 
 .install-status {
-  font-size: 13px;
-  color: #1a1a1a;
-  font-weight: 600;
-  margin-top: 14px;
-  min-height: 18px;
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 500;
+  margin-top: 16px;
+  min-height: 20px;
+  line-height: 1.55;
 }
 
+.install-status a {
+  color: var(--accent-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.install-status a:hover { color: var(--accent); }
+
+.install-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  height: 38px;
+  padding: 0 18px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s ease;
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.1);
+}
+.install-modal-btn:hover {
+  background: oklch(from var(--ink) calc(l + 0.08) c h);
+}
+
+/* ===========================================
+   RASSURANCE SMARTSCREEN WINDOWS
+   =========================================== */
+
+.windows-reassure {
+  background: var(--warn-soft);
+  border: 1px solid color-mix(in oklch, var(--warn) 35%, var(--border));
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-top: 20px;
+  text-align: left;
+  animation: slideDown 0.4s ease-out;
+}
+
+.windows-reassure-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.windows-reassure-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: color-mix(in oklch, var(--warn) 20%, var(--bg-elev));
+  color: var(--warn);
+  border: 1px solid color-mix(in oklch, var(--warn) 30%, var(--border));
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.windows-reassure-text {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.windows-reassure-text strong { color: var(--ink); font-weight: 600; }
+
+.windows-reassure-steps {
+  margin: 0 0 12px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  counter-reset: reassure;
+}
+
+.windows-reassure-steps li {
+  counter-increment: reassure;
+  padding: 6px 0 6px 28px;
+  position: relative;
+}
+
+.windows-reassure-steps li::before {
+  content: counter(reassure);
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  border: 1px solid color-mix(in oklch, var(--warn) 30%, var(--border));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--warn);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.windows-reassure-steps strong {
+  color: var(--ink);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.windows-reassure-steps em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.windows-reassure-steps code {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.windows-reassure-footer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  font-style: normal;
+  border-top: 1px dashed color-mix(in oklch, var(--warn) 25%, var(--border));
+  padding-top: 10px;
+}
+
+/* ===========================================
+   Aperçu macOS message (legacy)
+   =========================================== */
+
 .install-preview-msg {
-  background: #f3f0fa;
-  border: 1px solid #d8cce8;
-  border-radius: 10px;
+  background: var(--bg-sunk);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 14px 16px;
   margin-top: 18px;
   font-size: 13px;
-  color: #4a2f5e;
+  color: var(--ink-2);
   line-height: 1.5;
   display: none;
   animation: slideDown 0.4s ease-out;
 }
 
 .install-preview-msg.show { display: block; }
-.install-preview-msg strong { color: #1a1a1a; }
+.install-preview-msg strong { color: var(--ink); font-weight: 600; }
 
-/* === RASSURANCE SMARTSCREEN WINDOWS === */
-.windows-reassure {
-  background: #fff8e6;
-  border: 1px solid #f5d97c;
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-top: 18px;
-  text-align: left;
-  animation: slideDown 0.4s ease-out;
+/* ===========================================
+   Responsive
+   =========================================== */
+
+@media (max-width: 640px) {
+  .download-page { padding: 32px 16px; }
+  .download-back { top: 16px; left: 16px; }
+  .download-brand { padding: 22px 24px 0; font-size: 16px; }
+  .download-header { padding: 18px 24px 22px; }
+  .download-title { font-size: 21px; }
+  .download-body { padding: 0 24px 24px; }
 }
 
-.windows-reassure-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #7a4f0a;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.windows-reassure-icon { font-size: 16px; }
-
-.windows-reassure-text {
-  font-size: 12px;
-  color: #5a4520;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-.windows-reassure-text strong { color: #3d2f10; }
-
-.windows-reassure-steps {
-  margin: 0 0 10px 18px;
-  padding: 0;
-  font-size: 12px;
-  color: #5a4520;
-  line-height: 1.7;
-}
-
-.windows-reassure-steps li { margin-bottom: 2px; }
-.windows-reassure-steps strong { color: #1a1a1a; background: #fce5a3; padding: 1px 5px; border-radius: 3px; }
-.windows-reassure-steps em { font-style: italic; color: #7a4f0a; }
-.windows-reassure-steps code {
-  background: #f7f6f3;
-  border: 1px solid #e0ddd5;
-  border-radius: 4px;
-  padding: 1px 5px;
-  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 11px;
-  color: #1a1a1a;
-}
-
-.windows-reassure-footer {
-  font-size: 11px;
-  color: #888;
-  font-style: italic;
-  border-top: 1px dashed #f0d57e;
-  padding-top: 8px;
-}
-
-@media (max-width: 800px) {
+@media (max-width: 480px) {
   .download-platforms { grid-template-columns: 1fr; }
-}
-
-/* === ÉTAPE MOT DE PASSE === */
-.password-step {
-  margin-bottom: 8px;
-}
-
-.password-step-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 4px;
-  letter-spacing: -0.2px;
-}
-
-.password-step-sub {
-  font-size: 12px;
-  color: #6b6b6b;
-  line-height: 1.5;
-  margin-bottom: 14px;
-}
-
-.password-field {
-  margin-bottom: 10px;
-}
-
-.password-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: #6b6b6b;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin-bottom: 5px;
-}
-
-.password-input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #e0ddd5;
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: inherit;
-  background: white;
-  color: #1a1a1a;
-  transition: border-color 0.15s;
-}
-
-.password-input:focus {
-  outline: none;
-  border-color: #2d7d4f;
-}
-
-.password-input[readonly] {
-  background: #f7f6f3;
-  color: #6b6b6b;
-}
-
-.password-error {
-  font-size: 12px;
-  color: #c0392b;
-  min-height: 16px;
-  margin: 4px 0 8px;
-}
-
-.password-submit {
-  width: 100%;
-  background: linear-gradient(135deg, #2d7d4f 0%, #3ea569 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 13px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: opacity 0.15s, transform 0.1s;
-  margin-top: 4px;
-}
-
-.password-submit:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.password-submit:not(:disabled):hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
-}
-
-.password-success {
-  background: #e8f5ed;
-  border: 1px solid #b8dec8;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 12px;
-  color: #1d5e37;
-  line-height: 1.5;
-  margin-bottom: 14px;
-}
-
-.password-success .check {
-  color: #2d7d4f;
-  font-weight: 700;
-  margin-right: 6px;
-}
-
-.password-success a {
-  color: #2d7d4f;
-  font-weight: 600;
+  .install-modal { padding: 28px 22px 24px; }
 }

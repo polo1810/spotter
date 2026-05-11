@@ -4,23 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Téléchargement · Spotter</title>
-  
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/css/download.css">
 </head>
 <body>
 
 <div class="download-page">
+
+  <a href="/" class="download-back">← Retour à l'accueil</a>
+
   <div class="download-card">
+    <a href="/" class="download-brand">
+      <span class="brand-mark"></span>
+      Spotter
+    </a>
+
     <div class="download-header">
-      <div class="download-icon-big">✨</div>
-      <div class="download-title">Votre app est prête !</div>
-      <div class="download-sub">
-        On a personnalisé Spotter en fonction de vos réponses.<br>
-        Plus qu'à l'installer pour démarrer l'analyse.
-      </div>
+      <div class="download-eyebrow">Votre app est prête</div>
+      <div class="download-title">Spotter, personnalisé pour vous.</div>
+      <p class="download-sub">
+        On a calibré l'app selon vos réponses. Plus qu'à l'installer pour démarrer l'analyse.
+      </p>
     </div>
-    
+
     <div class="download-body">
       <div class="download-recap">
         <div class="download-recap-title">Personnalisé pour vous</div>
@@ -36,16 +48,16 @@
           Pour pouvoir te reconnecter à ton dashboard plus tard depuis n'importe quel appareil.
         </div>
         <div class="password-field">
-          <label class="password-label">Email</label>
+          <label class="password-label" for="passwordEmail">Email</label>
           <input type="email" id="passwordEmail" class="password-input" readonly />
         </div>
         <div class="password-field">
-          <label class="password-label">Mot de passe</label>
+          <label class="password-label" for="passwordInput">Mot de passe</label>
           <input type="password" id="passwordInput" class="password-input"
                  placeholder="6 caractères minimum" autocomplete="new-password" />
         </div>
         <div class="password-field">
-          <label class="password-label">Confirme</label>
+          <label class="password-label" for="passwordConfirm">Confirme</label>
           <input type="password" id="passwordConfirm" class="password-input"
                  placeholder="Re-tape ton mot de passe" autocomplete="new-password" />
         </div>
@@ -59,15 +71,21 @@
       <div id="platformStep" class="platform-step" style="display:none;">
         <div class="password-success">
           <span class="check">✓</span>
-          Compte créé. Tu pourras te reconnecter à <a href="/pages/login.html">login.html</a> à tout moment.
+          <span>Compte créé. Tu pourras te reconnecter à <a href="/pages/login.html">login.html</a> à tout moment.</span>
         </div>
 
         <div class="download-platforms">
           <button class="platform-btn" data-platform="Windows">
-            <span class="platform-icon">🪟</span> Windows
+            <span class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.85L6.55.97v6.43H0V1.85zm0 12.3L6.55 15.03V8.6H0v5.55zM7.27.87L16 0v7.4H7.27V.87zm0 14.27L16 16V8.6H7.27v6.54z"/></svg>
+            </span>
+            Windows
           </button>
           <button class="platform-btn" data-platform="macOS">
-            <span class="platform-icon">🍎</span> macOS
+            <span class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.18 8.43c-.02-2.06 1.69-3.06 1.77-3.1-.96-1.41-2.46-1.6-3-1.62-1.28-.13-2.5.75-3.15.75-.66 0-1.66-.74-2.73-.72-1.4.02-2.7.81-3.42 2.07-1.46 2.53-.37 6.27 1.05 8.32.69 1 1.52 2.13 2.6 2.09 1.04-.04 1.44-.67 2.7-.67s1.62.67 2.73.65c1.13-.02 1.84-1.02 2.53-2.03.8-1.16 1.12-2.29 1.14-2.35-.03-.01-2.19-.84-2.22-3.32zM9.13 2.4c.58-.7.97-1.67.86-2.64-.83.03-1.84.55-2.43 1.25-.54.62-1.01 1.6-.88 2.56.93.07 1.87-.47 2.45-1.17z"/></svg>
+            </span>
+            macOS
           </button>
         </div>
 
@@ -83,17 +101,19 @@
 <!-- INSTALL MODAL -->
 <div class="overlay" id="installModal">
   <div class="install-modal">
-    <div class="install-icon" id="installIcon">📦</div>
-    <div class="install-title" id="installTitle">Installation en cours...</div>
+    <div class="install-icon" id="installIcon">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M2 14h12"/></svg>
+    </div>
+    <div class="install-title" id="installTitle">Installation en cours…</div>
     <div class="install-sub">Spotter pour <span id="installPlatform">macOS</span></div>
     <div class="install-progress"><div class="install-progress-fill" id="installProgress"></div></div>
     <div class="install-percent" id="installPercent">0%</div>
-    <div class="install-status" id="installStatus">Téléchargement...</div>
+    <div class="install-status" id="installStatus">Téléchargement…</div>
 
     <!-- Bloc rassurant SmartScreen Windows -->
     <div id="windowsReassure" class="windows-reassure" style="display:none;">
       <div class="windows-reassure-title">
-        <span class="windows-reassure-icon">🛡️</span>
+        <span class="windows-reassure-icon" aria-hidden="true">!</span>
         Windows va probablement afficher un avertissement
       </div>
       <div class="windows-reassure-text">
