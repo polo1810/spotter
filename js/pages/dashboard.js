@@ -190,35 +190,35 @@ const PREVIEW_DATA = {
     ]
   },
 
-  avocat: {
+  patrimoine: {
     repetitions: [
-      { libelle: "Recherches de jurisprudence répétitives",      description: "Mêmes requêtes Doctrine / Lexis lancées plusieurs fois par semaine",         frequence: 28, frequence_unit: 'semaine', temps_perdu_minutes: 130, statut: 'automatable' },
-      { libelle: "Rédaction d'actes-types répétés",              description: "Mêmes mises en demeure / contrats / conclusions adaptés à la marge",         frequence: 18, frequence_unit: 'semaine', temps_perdu_minutes: 180, statut: 'automatable' },
-      { libelle: "Suivi facturation au temps passé",             description: "Saisie manuelle des temps dans Excel + relances clients",                    frequence: 40, frequence_unit: 'semaine', temps_perdu_minutes: 90,  statut: 'detected' },
-      { libelle: "Réponses récurrentes aux clients",             description: "Mêmes formulations envoyées plusieurs fois par mail aux clients",            frequence: 35, frequence_unit: 'semaine', temps_perdu_minutes: 75,  statut: 'detected' },
-      { libelle: "Vérifications de pièces de dossier",           description: "Pointage manuel des documents reçus / manquants par dossier",                 frequence: 12, frequence_unit: 'semaine', temps_perdu_minutes: 60,  statut: 'automated' },
+      { libelle: "Bilans patrimoniaux à mettre à jour",         description: "Recopie des avoirs clients depuis les relevés vers le bilan",                 frequence: 14, frequence_unit: 'semaine', temps_perdu_minutes: 150, statut: 'automatable' },
+      { libelle: "Agrégation manuelle des comptes clients",     description: "Consolidation des positions multi-établissements à la main",                  frequence: 22, frequence_unit: 'semaine', temps_perdu_minutes: 120, statut: 'detected' },
+      { libelle: "Relances de pièces clients (KYC)",            description: "Mails de relance récurrents pour justificatifs et documents réglementaires",  frequence: 40, frequence_unit: 'semaine', temps_perdu_minutes: 80,  statut: 'automatable' },
+      { libelle: "Reportings de situation aux clients",         description: "Mise en forme manuelle du point trimestriel par client",                      frequence: 10, frequence_unit: 'semaine', temps_perdu_minutes: 95,  statut: 'detected' },
+      { libelle: "Saisie réglementaire DER / lettre de mission",description: "Recopie des mêmes informations dans les documents obligatoires",              frequence: 8,  frequence_unit: 'semaine', temps_perdu_minutes: 55,  statut: 'automated' },
     ],
     autos: [
       {
-        title: "Bibliothèque d'actes-types pré-personnalisés",
-        desc:  "Vos modèles d'actes les plus utilisés (mises en demeure, contrats, conclusions) auto-complétés avec les données du dossier en un clic.",
+        title: "Bilans patrimoniaux pré-remplis",
+        desc:  "Agrégation auto des avoirs clients (comptes, assurance-vie, immobilier) → bilan patrimonial pré-rempli, prêt à présenter.",
         gain:  "+2h30/sem",
-        tools: ["Word"],
+        tools: ["Harvest", "Excel"],
         effort: "0 ligne de code · 3 minutes"
       },
       {
-        title: "Suivi facturation horaire automatisé",
-        desc:  "Détection automatique du temps passé sur chaque dossier (mails, documents) et compilation pour facturation mensuelle.",
-        gain:  "+1h45/sem",
-        tools: ["Outlook", "Excel"],
+        title: "Relances pièces clients automatisées",
+        desc:  "Suivi automatique des pièces KYC attendues par client + relance par mail à J+7 si manquantes.",
+        gain:  "+1h30/sem",
+        tools: ["Outlook"],
         effort: "0 ligne de code · 2 minutes"
       },
       {
-        title: "Templates de réponses mail intelligents",
-        desc:  "Les formulations qui reviennent dans 80% de vos mails clients transformées en raccourcis Outlook.",
+        title: "Reporting de situation en 1 clic",
+        desc:  "Génération auto du point trimestriel par client (performance, allocation, mouvements) prêt à envoyer.",
         gain:  "+1h15/sem",
-        tools: ["Outlook"],
-        effort: "0 ligne de code · 1 minute"
+        tools: ["Quantalys", "Outlook"],
+        effort: "0 ligne de code · 2 minutes"
       }
     ]
   },

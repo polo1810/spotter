@@ -31,14 +31,14 @@ const METIERS_META = {
       'Sync ATS automatique depuis LinkedIn Recruiter',
     ],
   },
-  avocat: {
-    tools: 'Doctrine · Word · RPVA',
-    peers: '480+ équipes',
-    timeSaved: '+4h15',
+  patrimoine: {
+    tools: 'Harvest · Quantalys · MoneyPitch',
+    peers: '430+ équipes',
+    timeSaved: '+5h15',
     autos: [
-      'Bibliothèque d\'actes-types pré-personnalisés (mises en demeure, contrats)',
-      'Suivi facturation horaire automatisé par dossier',
-      'Templates de réponses mail clients récurrents',
+      'Bilans patrimoniaux pré-remplis depuis l\'agrégation de comptes',
+      'Relances automatiques des pièces clients (KYC, justificatifs)',
+      'Reporting de situation client généré en 1 clic',
     ],
   },
   immobilier: {

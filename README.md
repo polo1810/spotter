@@ -15,7 +15,7 @@ download.html
     ├─ Étape 1 : crée ton mot de passe → Supabase Auth signUp + lien user_id ↔ client
     └─ Étape 2 : choix plateforme
        ├─ Windows : téléchargement direct du .exe
-       └─ macOS : message "pas encore disponible"
+       └─ macOS : téléchargement direct du .dmg
     ↓
 login.html (retour client : email + mot de passe)
     ↓

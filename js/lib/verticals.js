@@ -236,41 +236,42 @@ const VERTICALS = {
   },
 
   // ===========================================
-  // CABINET D'AVOCATS
+  // CABINET DE GESTION DE PATRIMOINE
   // ===========================================
-  avocat: {
-    label: 'Cabinet d\'avocats',
-    chip: 'Pour cabinets d\'avocats',
+  patrimoine: {
+    label: 'Cabinet de gestion de patrimoine',
+    chip: 'Pour conseillers en gestion de patrimoine',
     title: 'Quelques questions pour personnaliser votre app',
-    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité juridique.',
-    landingIcon: '⚖️',
-    landingTitle: 'Avocat',
-    landingDesc: 'Doctrine, Lexis, Dalloz, gestion de dossiers, rédaction d\'actes, facturation aux temps...',
+    subtitle: 'Vos réponses nous permettent de configurer Productly pour votre activité de gestion de patrimoine.',
+    landingIcon: '💰',
+    landingTitle: 'Gestion de patrimoine',
+    landingDesc: 'Harvest O2S, Quantalys, MoneyPitch, bilans patrimoniaux, agrégation de comptes, reportings clients...',
     questions: [
       {
         id: 'tools', type: 'multi',
         question: 'Quels outils utilisez-vous au quotidien ?',
         helper: 'Sélectionnez tout ce qui s\'applique.',
         options: [
-          { value: 'doctrine',  label: 'Doctrine' },
-          { value: 'lexis',     label: 'Lexis 360 / Lexbase' },
-          { value: 'dalloz',    label: 'Dalloz' },
-          { value: 'rpva',      label: 'RPVA / e-Barreau' },
-          { value: 'outlook',   label: 'Outlook / Gmail' },
-          { value: 'word',      label: 'Word / Google Docs' },
-          { value: 'excel',     label: 'Excel' },
-          { value: 'autre',     label: 'Autre' },
+          { value: 'harvest',    label: 'Harvest (O2S, Big Expert)' },
+          { value: 'quantalys',  label: 'Quantalys' },
+          { value: 'moneypitch', label: 'MoneyPitch' },
+          { value: 'manymore',   label: 'Manymore' },
+          { value: 'kwiper',     label: 'Kwiper' },
+          { value: 'outlook',    label: 'Outlook / Gmail' },
+          { value: 'excel',      label: 'Excel' },
+          { value: 'crm',        label: 'CRM (Salesforce, Ines...)' },
+          { value: 'autre',      label: 'Autre' },
         ]
       },
       {
         id: 'role', type: 'radio',
         question: 'Quel est votre rôle dans le cabinet ?',
         options: [
-          { value: 'associe',    label: 'Avocat associé' },
-          { value: 'collab',     label: 'Avocat collaborateur' },
-          { value: 'juriste',    label: 'Juriste' },
-          { value: 'assistant',  label: 'Assistant(e) juridique' },
-          { value: 'autre',      label: 'Autre' },
+          { value: 'cgp',           label: 'Conseiller en gestion de patrimoine' },
+          { value: 'dirigeant',     label: 'Gérant / Dirigeant du cabinet' },
+          { value: 'familyofficer', label: 'Family officer' },
+          { value: 'assistant',     label: 'Assistant(e) de gestion' },
+          { value: 'autre',         label: 'Autre' },
         ]
       },
       {
@@ -286,41 +287,39 @@ const VERTICALS = {
       },
       {
         id: 'specialite', type: 'radio',
-        question: 'Quelle est votre spécialité principale ?',
+        question: 'Quel est votre domaine de conseil principal ?',
         options: [
-          { value: 'affaires', label: 'Droit des affaires' },
-          { value: 'social',   label: 'Droit social' },
-          { value: 'immo',     label: 'Droit immobilier' },
-          { value: 'famille',  label: 'Droit de la famille' },
-          { value: 'fiscal',   label: 'Droit fiscal' },
-          { value: 'penal',    label: 'Droit pénal' },
-          { value: 'mix',      label: 'Plusieurs spécialités' },
+          { value: 'financier',    label: 'Placements financiers / assurance-vie' },
+          { value: 'immo',         label: 'Immobilier (SCPI, défiscalisation)' },
+          { value: 'fiscal',       label: 'Optimisation fiscale' },
+          { value: 'transmission', label: 'Transmission / succession' },
+          { value: 'global',       label: 'Conseil patrimonial global (360°)' },
         ]
       },
       {
         id: 'clients', type: 'radio',
-        question: 'Quel type de clientèle traitez-vous principalement ?',
+        question: 'Quel type de clientèle gérez-vous principalement ?',
         options: [
-          { value: 'entreprises', label: 'Surtout des entreprises' },
-          { value: 'particuliers',label: 'Surtout des particuliers' },
-          { value: 'mix',         label: 'Un mix des deux' },
-          { value: 'institutions',label: 'Institutionnels / collectivités' },
+          { value: 'particuliers', label: 'Particuliers / cadres' },
+          { value: 'dirigeants',   label: 'Chefs d\'entreprise / indépendants' },
+          { value: 'hautrevenu',   label: 'Clientèle haut de gamme (HNWI)' },
+          { value: 'mix',          label: 'Un mix de profils' },
         ]
       },
       {
-        id: 'facturation', type: 'radio',
-        question: 'Comment vous facturez la majorité de vos missions ?',
+        id: 'remuneration', type: 'radio',
+        question: 'Comment êtes-vous rémunéré principalement ?',
         options: [
-          { value: 'forfait', label: 'Au forfait' },
-          { value: 'horaire', label: 'Au temps passé (taux horaire)' },
-          { value: 'mensuel', label: 'Abonnement mensuel' },
-          { value: 'mix',     label: 'Un mix selon les dossiers' },
+          { value: 'retro',      label: 'Rétrocessions sur encours' },
+          { value: 'honoraires', label: 'Honoraires de conseil' },
+          { value: 'courtage',   label: 'Commissions de courtage' },
+          { value: 'mix',        label: 'Un mix des trois' },
         ]
       },
       {
         id: 'habits', type: 'radio',
         question: 'Y a-t-il des tâches que vous faites toutes les semaines sans vraiment les remettre en question ?',
-        helper: 'Rédactions répétées, suivis de courriers, recherches de jurisprudence...',
+        helper: 'Bilans patrimoniaux, agrégation de comptes, relances de pièces, saisies KYC...',
         options: [
           { value: 'oui-clair', label: 'Oui, très clairement' },
           { value: 'oui-vague', label: 'Probablement, mais je saurais pas dire lesquelles' },

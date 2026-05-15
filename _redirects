@@ -4,7 +4,7 @@
 # Aliases vers le questionnaire avec vertical pré-sélectionné
 /comptable      /pages/questionnaire.html?v=comptable      200
 /recrutement    /pages/questionnaire.html?v=recrutement    200
-/avocat         /pages/questionnaire.html?v=avocat         200
+/patrimoine     /pages/questionnaire.html?v=patrimoine     200
 /immobilier     /pages/questionnaire.html?v=immobilier     200
 /architecte     /pages/questionnaire.html?v=architecte     200
 /conseil        /pages/questionnaire.html?v=conseil        200
